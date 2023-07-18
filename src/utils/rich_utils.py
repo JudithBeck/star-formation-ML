@@ -95,3 +95,24 @@ def enforce_tags(cfg: DictConfig, save_to_file: bool = False) -> None:
     if save_to_file:
         with open(Path(cfg.paths.output_dir, "tags.log"), "w") as file:
             rich.print(cfg.tags, file=file)
+
+
+
+
+
+#In the 'utils' folder inside 'src', there are two Python functions: print_config_tree and enforce_tags. These functions are used to print the configuration tree using the Rich library and prompt the user to input tags, respectively.
+
+#print_config_tree(cfg: DictConfig, print_order: Sequence[str], resolve: bool, save_to_file: bool) -> None: This function takes a configuration dictionary cfg (expected to be an OmegaConf config) as input and prints its content using the Rich library's tree structure. It allows customizing the order in which config components are printed through the print_order parameter. The resolve parameter determines whether to resolve reference fields of the DictConfig. The save_to_file parameter determines whether to export the config tree to the hydra output folder.
+
+#The function starts by creating a tree using Rich's rich.tree.Tree class.
+#It builds a queue of fields to add to the tree based on the print_order.
+#Then, it adds all the other fields from the configuration not specified in the print_order to the queue.
+#For each field in the queue, it adds a branch to the tree and adds the content of the corresponding DictConfig as YAML syntax to the branch.
+#The function then prints the config tree using rich.print(tree).
+#If save_to_file is True, it saves the config tree to a file named "config_tree.log" in the hydra output directory.
+#enforce_tags(cfg: DictConfig, save_to_file: bool) -> None: This function takes a configuration dictionary cfg (expected to be an OmegaConf config) as input and prompts the user to input tags from the command line if no tags are provided in the config. The save_to_file parameter determines whether to save the tags to a file.
+
+#If the configuration does not have any tags (cfg.get("tags") returns None or an empty list), it prompts the user to input a list of comma-separated tags from the command line.
+#The entered tags are split and trimmed, and then the tags are assigned to the cfg.tags field using with open_dict(cfg):.
+#If save_to_file is True, it saves the tags to a file named "tags.log" in the hydra output directory.
+#These utility functions enhance the Hydra-based configuration management by providing a more visually appealing way to print the configuration tree and ensuring the presence of user-defined tags in the configuration for better experiment organization and identification.

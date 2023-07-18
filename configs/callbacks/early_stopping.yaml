@@ -13,3 +13,48 @@ early_stopping:
   divergence_threshold: null # stop training as soon as the monitored quantity becomes worse than this threshold
   check_on_train_epoch_end: null # whether to run early stopping at the end of the training epoch
   # log_rank_zero_only: False  # this keyword argument isn't available in stable version
+
+
+# https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.callbacks.EarlyStopping.html
+
+# early_stopping:
+# This section defines the configuration for the "EarlyStopping" callback from the lightning.pytorch.callbacks module.
+
+# _target_: lightning.pytorch.callbacks.EarlyStopping
+# This specifies the target class for the "EarlyStopping" callback.
+
+# monitor: ???
+# This parameter is not specified in the provided configuration. The documentation states that it is a required parameter, and the user must specify the quantity to be monitored during training. It can be a metric or loss that will be tracked to determine when to stop training based on improvements.
+
+# min_delta: 0.0
+# This sets the minimum change in the monitored quantity to qualify as an improvement. If the change is less than this value, it will not be considered as an improvement.
+
+# patience: 3
+# This sets the number of checks with no improvement after which training will be stopped. If there is no improvement for the specified number of epochs, training will stop.
+
+# verbose: False
+# This sets the verbosity mode. If set to True, additional information will be printed during training, such as when early stopping is triggered.
+
+# mode: "min"
+# This sets the mode for monitoring the early stopping metric. It can be "min" or "max." If "min," it means a lower metric value is considered better and will trigger early stopping. If "max," it means a higher metric value is considered better and will trigger early stopping.
+
+# strict: True
+# This sets whether to crash the training if the monitor is not found in the validation metrics. If set to True, training will stop immediately if the specified monitor metric is not found in the validation metrics.
+
+# check_finite: True
+# When set to True, training will stop if the monitor becomes NaN (Not a Number) or infinite during training.
+
+# stopping_threshold: null
+# This parameter is not specified in the provided configuration. If specified, training will stop immediately once the monitored quantity reaches this threshold.
+
+# divergence_threshold: null
+# This parameter is not specified in the provided configuration. If specified, training will stop as soon as the monitored quantity becomes worse than this threshold.
+
+# check_on_train_epoch_end: null
+# This parameter is not specified in the provided configuration. If specified, it controls whether to run early stopping at the end of each training epoch.
+
+# log_rank_zero_only: False
+# This keyword argument isn't available in the stable version. It might be available in a different version of the library.
+
+
+# In summary, this YAML configuration sets up the "EarlyStopping" callback from the lightning.pytorch.callbacks module. It defines various parameters that control the early stopping behavior during model training, such as the monitored quantity, minimum change for improvement, patience, verbosity mode, and more. Some parameters are optional and have a default value of null, while others are required and must be specified by the user. 

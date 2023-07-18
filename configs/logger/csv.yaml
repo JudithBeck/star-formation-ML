@@ -5,3 +5,19 @@ csv:
   save_dir: "${paths.output_dir}"
   name: "csv/"
   prefix: ""
+
+
+#csv:
+#  _target_: lightning.pytorch.loggers.csv_logs.CSVLogger
+  # This specifies that the CSVLogger will be used as the logging tool for this configuration.
+
+#  save_dir: "${paths.output_dir}"
+  # This sets the directory where the CSV log files will be saved. The value of "${paths.output_dir}" likely represents a variable that points to the output directory.
+
+#  name: "csv/"
+  # This sets the name of the CSV log files. The logs will be saved with this name, and it will be followed by a timestamp. For example, "csv/2023-07-25_15-30-45.csv".
+
+#  prefix: ""
+  # This is an optional prefix that can be added to all the metric names logged with CSV. It allows you to organize and group metrics under a specific prefix in the CSV logs.
+
+# In summary, this YAML configuration sets up the CSVLogger as the logging tool, which is built into PyTorch Lightning. The logger will save the logged metrics in CSV format. The CSV log files will be stored in the specified save_dir, and each file will have a name with the format "csv/YYYY-MM-DD_HH-MM-SS.csv", where "YYYY-MM-DD_HH-MM-SS" is the timestamp when the log file is created. You also have the option to add a prefix to the metric names for better organization in the CSV logs.

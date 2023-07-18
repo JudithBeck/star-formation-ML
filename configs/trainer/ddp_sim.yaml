@@ -5,3 +5,31 @@ defaults:
 accelerator: cpu
 devices: 2
 strategy: ddp_spawn
+
+
+# The 'defaults' section specifies the default configuration file(s) to be loaded.
+# In this case, 'default.yaml' is being used as the default configuration.
+#defaults:
+#  - default.yaml
+
+# The 'accelerator' setting specifies the accelerator to be used for training.
+# Here, it is set to 'cpu', indicating that the model will be trained on the CPU.
+# The purpose of this setting is to simulate DDP (Distributed Data Parallel) training on CPU, which is useful for debugging purposes.
+#accelerator: cpu
+
+# The 'devices' setting indicates the number of devices (CPU cores or GPU devices) to be used for training.
+# In this configuration, it is set to '2', which means two devices (CPU cores) will be used for training.
+# As the 'accelerator' is set to 'cpu', this likely means the model will be trained on two CPU cores.
+#devices: 2
+
+# The 'strategy' setting specifies the training strategy to be used.
+# Here, it is set to 'ddp_spawn', which stands for Distributed Data Parallel training using the spawn method.
+# DDP is typically used to train models in a distributed manner across multiple devices (GPUs or nodes).
+# However, in this case, the 'accelerator' is set to 'cpu', so 'ddp_spawn' may be used to simulate DDP on CPU.
+# This can be useful for debugging and testing DDP-related code without requiring actual GPUs.
+#strategy: ddp_spawn
+
+#The 'defaults' section specifies 'default.yaml' as the default configuration file to be loaded.
+#The 'accelerator' is set to 'cpu', indicating that the model will be trained on the CPU.
+#The 'devices' setting is set to '2', meaning the model will be trained on two CPU cores.
+#The 'strategy' setting is set to 'ddp_spawn', indicating the use of Distributed Data Parallel training using the spawn method. This may be used to simulate DDP training on CPU, which is useful for debugging purposes.

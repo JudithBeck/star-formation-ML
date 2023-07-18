@@ -23,3 +23,39 @@ net:
   lin5_size: 64 
   lin6_size: 32
   output_size: 5
+
+
+# The file configures the StarsLitModule, which appears to be a specific machine learning model.
+# It is located in the 'model' folder inside the 'configs' folder.
+
+# Here, we specify the optimizer for training the model.
+#optimizer:
+#  _target_: torch.optim.Adam
+#  _partial_: true
+#  lr: 0.0001
+#  weight_decay: 0.0
+
+# Next, we define the scheduler, which will adjust the learning rate during training.
+#scheduler:
+#  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+#  _partial_: true
+#  mode: min
+#  factor: 0.5
+#  patience: 10
+
+# Now, we define the architecture of the neural network.
+#net:
+#  _target_: src.models.components.multilayer_perceptron.MLP
+#  input_size: 4302
+#  lin1_size: 2048
+#  lin2_size: 1024
+#  lin3_size: 512
+#  lin4_size: 256
+#  lin5_size: 64
+#  lin6_size: 32
+#  output_size: 5
+
+#The file configures the StarsLitModule, which is a specific machine learning model.
+#The optimizer chosen for training the model is the Adam optimizer with a learning rate (lr) of 0.0001 and no weight decay (weight_decay).
+#The scheduler used is the ReduceLROnPlateau scheduler, which reduces the learning rate by a factor of 0.5 when the monitored metric stops improving for a certain number of epochs (patience). The mode is set to 'min', which means the scheduler will reduce the learning rate when the monitored metric stops decreasing (minimizing).
+#The neural network architecture (net) is defined as a multilayer perceptron (MLP) with specific layer sizes. The input layer size is 4302, and it has 6 hidden layers with sizes 2048, 1024, 512, 256, 64, and 32, respectively. The output layer has a size of 5, suggesting that the model is designed for a multi-class classification task with 5 classes.

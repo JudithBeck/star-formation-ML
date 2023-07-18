@@ -16,3 +16,37 @@ output_dir: ${hydra:runtime.output_dir}
 
 # path to working directory
 work_dir: ${hydra:runtime.cwd}
+
+
+
+# path to root directory
+# this requires PROJECT_ROOT environment variable to exist
+# you can replace it with "." if you want the root to be the current working directory
+#root_dir: ${oc.env:PROJECT_ROOT}
+# path to data directory
+#data_dir: ${paths.root_dir}/data/
+
+# path to logging directory
+#log_dir: ${paths.root_dir}/logs/
+
+# path to output directory, created dynamically by hydra
+# path generation pattern is specified in `configs/hydra/default.yaml`
+# use it to store all files generated during the run, like ckpts and metrics
+#output_dir: ${hydra:runtime.output_dir}
+
+# path to working directory
+#work_dir: ${hydra:runtime.cwd}
+
+#Explanation:
+
+#root_dir: This is the path to the root directory of the project. It is using the Hydra syntax to reference the value of the environment variable PROJECT_ROOT. If PROJECT_ROOT is defined, it will be used as the root directory. Otherwise, the value can be replaced with . to set the current working directory as the root.
+
+#data_dir: This is the path to the data directory, which is a subdirectory inside the root directory (${paths.root_dir}). It is used to store data related to the project.
+
+#log_dir: This is the path to the logging directory, which is also a subdirectory inside the root directory (${paths.root_dir}). It is used to store log files related to the project.
+
+#output_dir: This is the path to the output directory, which is created dynamically by Hydra during the run. The path generation pattern is specified in the configs/hydra/default.yaml file. This directory is used to store files generated during the run, such as checkpoints and metrics.
+
+#work_dir: This is the path to the working directory. It is obtained from Hydra's runtime context and is used to specify the current working directory for the project.
+
+#Please note that some of the values in this configuration file are using Hydra interpolation syntax (e.g., ${oc.env:PROJECT_ROOT} and ${hydra:runtime.output_dir}). Hydra is a powerful configuration management tool that allows you to create dynamic configurations by combining multiple configuration files and using variable interpolation.

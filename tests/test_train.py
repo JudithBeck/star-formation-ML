@@ -86,3 +86,20 @@ def test_train_resume(tmp_path, cfg_train):
 
     assert metric_dict_1["train/acc"] < metric_dict_2["train/acc"]
     assert metric_dict_1["val/acc"] < metric_dict_2["val/acc"]
+
+
+#These test functions focus on different scenarios during the training process. Here's a summary of each test:
+
+#test_train_fast_dev_run(cfg_train): This test runs one training, validation, and test step using fast_dev_run=True on the CPU. The train() function is called with the specified configuration.
+
+#test_train_fast_dev_run_gpu(cfg_train): This test is similar to the previous one but runs the process on a GPU (if available).
+
+#test_train_epoch_gpu_amp(cfg_train): This test trains one epoch on the GPU using mixed-precision (16-bit precision). The train() function is called with the specified configuration.
+
+#test_train_epoch_double_val_loop(cfg_train): This test trains one epoch with the validation loop executed twice per epoch. The train() function is called with the specified configuration.
+
+#test_train_ddp_sim(cfg_train): This test simulates Distributed Data Parallel (DDP) on two CPU processes. The training process runs for two epochs using DDP spawn strategy. The train() function is called with the specified configuration.
+
+#test_train_resume(tmp_path, cfg_train): This test runs one epoch, saves the checkpoint, and resumes the training for another epoch. The train() function is called twice with different configurations for resuming.
+
+#These tests cover various training scenarios, such as fast development runs, running on GPUs with mixed-precision, running DDP simulations, and resuming training from a checkpoint. They ensure that the training process works correctly under different conditions and produces the expected results. The RunIf decorator is used to conditionally skip tests that require certain resources (e.g., GPUs) that may not be available in the testing environment.

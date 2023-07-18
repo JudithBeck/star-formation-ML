@@ -34,3 +34,19 @@ jobs:
         uses: pre-commit/action@v2.0.3
         with:
           extra_args: --files ${{ steps.file_changes.outputs.files}}
+
+
+
+#name: Code Quality PR: Dies ist der Name des Workflows - "Code Quality PR". Dies dient als beschreibender Label für den Workflow.
+#on: Hier wird definiert, welche Ereignisse den Workflow auslösen. In diesem Fall wird der Workflow ausgelöst, wenn ein Pull Request erstellt wird (pull_request-Ereignis). Es wird auf den Branchnamen geprüft, und der Workflow wird ausgelöst, wenn der PR auf den Branches main, release/* oder dev erstellt wurde.
+#jobs: Dieser Abschnitt enthält die Liste der Jobs, die in diesem Workflow ausgeführt werden. Ein Job ist eine Sammlung von Schritten, die auf demselben Runner ausgeführt werden.
+#code-quality: Dies ist der Name des Jobs. In diesem Fall ist es der Job "code-quality", der die Code-Qualitätsprüfungen durchführt.
+#runs-on: Dies gibt an, auf welchem Runner der Job ausgeführt wird. Hier wird der Job auf einem ubuntu-latest Runner ausgeführt.
+#steps: Dies ist die Liste der einzelnen Aufgaben oder Schritte, die im Job ausgeführt werden. Jeder Schritt führt eine spezifische Aktion aus.
+#- name: Checkout: Dieser Schritt prüft den Code in den Runner ein. Dafür wird die actions/checkout@v2 Action verwendet, die offizielle GitHub Action zum Einchecken von Code aus dem Repository.
+#- name: Set up Python: In diesem Schritt wird die Python-Umgebung auf dem Runner eingerichtet. Die actions/setup-python@v2 Action wird verwendet, um die entsprechende Python-Version zu konfigurieren.
+#- name: Find modified files: Dieser Schritt verwendet die trilom/file-changes-action@v1.2.4 Action, um zu ermitteln, welche Dateien im PR geändert wurden. Die Ausgabe der geänderten Dateien wird als leere Zeichenkette (output: " ") gespeichert und später in einem anderen Schritt verwendet.
+#- name: List modified files: In diesem Schritt werden die geänderten Dateien in der Ausgabe angezeigt. Das dient zum Debuggen und Überprüfen.
+#- name: Run pre-commits: Schließlich wird in diesem Schritt pre-commit/action@v2.0.3 Action verwendet, um Pre-Commit-Hooks auf den geänderten Dateien auszuführen. Die Pre-Commit-Hooks sind Skripte oder Tools, die automatisch Code-Qualitätsprüfungen und Formatierungen vor jedem Commit durchführen, um die Codequalität und -konsistenz zu gewährleisten.
+#Insgesamt führt dieser GitHub Actions-Workflow also Code-Qualitätsprüfungen durch, wenn ein Pull Request in die Haupt-, Release- oder Entwicklungsbranch erstellt wird.
+

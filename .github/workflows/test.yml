@@ -137,3 +137,83 @@ jobs:
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
+
+
+
+
+# name: Tests
+# Dies ist der Name des Workflows - "Tests". Er wird verwendet, um Tests für das Repository auszuführen.
+
+# on:
+# Hier wird definiert, welche Ereignisse den Workflow auslösen. In diesem Fall wird der Workflow ausgelöst, wenn Code in den "main"-Branch gepusht wird (push-Ereignis).
+# Außerdem wird der Workflow auch ausgelöst, wenn ein Pull Request erstellt wird, der auf den Branches "main", "release/*" oder "dev" basiert (pull_request-Ereignis).
+
+# jobs:
+# Dieser Abschnitt enthält die Liste der Jobs, die in diesem Workflow ausgeführt werden. Ein Job ist eine Sammlung von Schritten, die auf demselben Runner ausgeführt werden.
+
+# run_tests_ubuntu:
+# Dies ist der Name des ersten Jobs - "run_tests_ubuntu", der Tests auf einem Ubuntu-Runner ausführt.
+
+# runs-on: ${{ matrix.os }}
+# Hier wird der Runner spezifiziert, auf dem der Job ausgeführt wird. In diesem Fall verwendet der Job einen "matrix.os", um verschiedene Betriebssysteme zu unterstützen.
+
+# strategy:
+# Hier wird die Strategie für die Matrix-Optionen festgelegt. Die "fail-fast: false" Option bedeutet, dass der Workflow nicht sofort beendet wird, wenn ein Job fehlschlägt.
+# Es wird eine Matrix erstellt, um verschiedene OS- und Python-Versionen auszuführen.
+
+# matrix:
+# Dies definiert die Matrix der verschiedenen Variablen, die für die "runs-on" und "strategy" verwendet werden.
+# Der Job wird für jeden Eintrag in der Matrix mit den angegebenen OS- und Python-Versionen ausgeführt.
+
+# timeout-minutes: 20
+# Dies ist die maximale Zeit in Minuten, die der Job ausgeführt werden darf, bevor er automatisch abgebrochen wird.
+
+# steps:
+# Dies ist die Liste der einzelnen Schritte, die im Job ausgeführt werden. Jeder Schritt führt eine spezifische Aktion aus.
+
+# - name: Checkout
+# In diesem Schritt wird der Code in den Runner eingebunden. Die "actions/checkout@v3"-Action wird verwendet, um den Code aus dem Repository einzubinden.
+
+# - name: Set up Python ${{ matrix.python-version }}
+# In diesem Schritt wird die entsprechende Python-Version für den Job eingerichtet. Die "actions/setup-python@v3"-Action wird verwendet, um die Python-Version zu konfigurieren.
+
+# - name: Install dependencies
+# In diesem Schritt werden die Abhängigkeiten installiert. Die benötigten Python-Pakete werden über "pip install" installiert.
+# Dabei wird die Datei "requirements.txt" verwendet, um die Abhängigkeiten aufzulisten.
+
+# - name: List dependencies
+# In diesem Schritt werden die installierten Abhängigkeiten aufgelistet, um zu überprüfen, ob sie korrekt installiert wurden.
+
+# - name: Run pytest
+# In diesem Schritt werden die Tests ausgeführt. Der Befehl "pytest -v" wird verwendet, um die Tests mit erhöhter Ausgabeverbosity auszuführen.
+
+# run_tests_macos:
+# Dies ist der Name des zweiten Jobs - "run_tests_macos", der Tests auf einem macOS-Runner ausführt.
+# Der Rest der Struktur ist ähnlich wie bei "run_tests_ubuntu".
+
+# run_tests_windows:
+# Dies ist der Name des dritten Jobs - "run_tests_windows", der Tests auf einem Windows-Runner ausführt.
+# Der Rest der Struktur ist ähnlich wie bei "run_tests_ubuntu".
+
+# code-coverage:
+# Dies ist der Name des vierten Jobs - "code-coverage", der für die Code-Coverage zuständig ist.
+# Es verwendet einen Ubuntu-Runner.
+
+# steps:
+# Dies ist die Liste der einzelnen Schritte, die im Job ausgeführt werden. Jeder Schritt führt eine spezifische Aktion aus.
+
+# - name: Checkout
+# In diesem Schritt wird der Code in den Runner eingebunden. Die "actions/checkout@v2"-Action wird verwendet, um den Code aus dem Repository einzubinden.
+
+# - name: Set up Python 3.10
+# In diesem Schritt wird die Python-Version 3.10 für den Job eingerichtet.
+
+# - name: Install dependencies
+# In diesem Schritt werden die Abhängigkeiten installiert, einschließlich pytest-cov[toml], um die Code-Coverage zu erfassen.
+
+# - name: Run tests and collect coverage
+# In diesem Schritt werden die Tests ausgeführt und die Code-Coverage gesammelt. Der Befehl "pytest --cov src" wird verwendet, um die Tests mit der Coverage auszuführen.
+
+# - name: Upload coverage to Codecov
+# In diesem Schritt wird die Code-Coverage an Codecov hochgeladen, um sie zu erfassen und anzuzeigen.
+

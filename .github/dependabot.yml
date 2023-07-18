@@ -14,3 +14,41 @@ updates:
         update-types: ["version-update:semver-patch"]
       - dependency-name: "torchmetrics"
         update-types: ["version-update:semver-patch"]
+
+
+
+# version: 2
+# This specifies the version of Dependabot configuration.
+
+# updates:
+# This section contains the configuration for the dependency updates.
+
+# - package-ecosystem: "pip"
+# This specifies the package ecosystem for which dependency updates will be managed. In this case, it's the "pip" ecosystem, which is the package manager for Python.
+
+# directory: "/"
+# This specifies the location of the package manifests (e.g., requirements.txt, pyproject.toml) in the repository. In this case, the manifests are located in the root directory ("/").
+
+# schedule:
+# This section defines the update schedule for dependencies.
+
+# interval: "daily"
+# This sets the update interval to "daily". It means that Dependabot will check for updates daily and create pull requests to update the dependencies as needed.
+
+# ignore:
+# This section specifies the dependencies that should be ignored for updates.
+
+# - dependency-name: "pytorch-lightning"
+# This specifies the name of the dependency "pytorch-lightning" that should be ignored for updates.
+
+# update-types: ["version-update:semver-patch"]
+# This specifies the update types that should be ignored for the "pytorch-lightning" dependency. In this case, only "version-update:semver-patch" updates will be ignored.
+# This means that only updates with semantic versioning patches (e.g., from version 1.0.0 to 1.0.1) will be ignored for "pytorch-lightning".
+
+# - dependency-name: "torchmetrics"
+# This specifies the name of the dependency "torchmetrics" that should be ignored for updates.
+
+# update-types: ["version-update:semver-patch"]
+# This specifies the update types that should be ignored for the "torchmetrics" dependency. Similar to the previous one, only "version-update:semver-patch" updates will be ignored for "torchmetrics".
+
+# In summary, this configuration sets up Dependabot to manage updates for Python dependencies specified in the package manifests located in the root directory of the repository. Dependabot will check for updates daily and create pull requests for any dependency updates, except for "pytorch-lightning" and "torchmetrics" packages when they receive semantic versioning patches.

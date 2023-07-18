@@ -33,3 +33,61 @@ trainer:
 data:
   num_workers: 0 # debuggers don't like multiprocessing
   pin_memory: False # disable gpu memory pin
+
+
+
+# @package _global_
+
+# default debugging setup, runs 1 full epoch
+# other debugging configs can inherit from this one
+
+# task_name: "debug"
+# This sets the task name to "debug" so that debugging logs are stored in a separate folder.
+
+# callbacks: null
+# logger: null
+# This disables callbacks and loggers during debugging by setting them to null.
+
+# extras:
+# This section contains additional options for debugging.
+
+# ignore_warnings: False
+# This sets whether to ignore warnings during debugging. If set to False, warnings will not be ignored.
+
+# enforce_tags: False
+# This sets whether to enforce tags during debugging. If set to False, tags will not be enforced.
+
+# hydra:
+# This section contains configurations for Hydra, a configuration management tool.
+
+# job_logging:
+# This section sets the logging level for different loggers.
+
+# root:
+# This sets the logging level for the root logger to 'DEBUG', which means it will log debug messages.
+
+# trainer:
+# This section contains configurations for the training process.
+
+# max_epochs: 1
+# This sets the maximum number of epochs for training to 1, running only one full epoch.
+
+# accelerator: cpu
+# This sets the accelerator to "cpu" as debuggers don't work well with GPUs.
+
+# devices: 1
+# This sets the number of devices to 1, as debuggers don't like multiprocessing.
+
+# detect_anomaly: true
+# This enables anomaly detection during debugging. If NaN or +/-inf is detected in any tensor, an exception will be raised.
+
+# data:
+# This section contains configurations related to data loading.
+
+# num_workers: 0
+# This sets the number of worker threads for data loading to 0, as debuggers don't like multiprocessing.
+
+# pin_memory: False
+# This disables GPU memory pinning during debugging.
+
+# In summary, this YAML configuration is a default debugging setup that runs only one full epoch. It disables callbacks and loggers, sets the task name to "debug," and provides options for ignoring warnings and enforcing tags during debugging. It also configures Hydra logging, sets the training accelerator to "cpu," and enables anomaly detection. The configuration ensures that debuggers work well and avoid potential multiprocessing issues during debugging.

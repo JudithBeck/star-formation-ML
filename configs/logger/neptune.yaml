@@ -7,3 +7,19 @@ neptune:
   # name: ""
   log_model_checkpoints: True
   prefix: ""
+
+
+#https://neptune.ai
+#In this YAML configuration, the NeptuneLogger is set up to log training information to Neptune, a platform for experiment tracking and collaboration. Let's explain each part:
+#neptune:
+#target: lightning.pytorch.loggers.neptune.NeptuneLogger
+#This specifies the target class for the NeptuneLogger from the lightning.pytorch.loggers.neptune module. It means that the NeptuneLogger will be used for logging training information.
+#api_key: ${oc.env:NEPTUNE_API_TOKEN}
+#This sets the API key for Neptune. The value is loaded from the "NEPTUNE_API_TOKEN" environment variable. The API key is used to authenticate with Neptune and log the training information to the specified Neptune project.
+#project: username/lightning-hydra-template
+#This sets the Neptune project where the training information will be logged. The value should be in the format "username/project_name".
+#log_model_checkpoints: True
+#This specifies whether to log model checkpoints to Neptune. When set to "True", model checkpoints will be logged as part of the training information.
+#prefix: ""
+#This sets the prefix for the run name in Neptune. The run name is used to identify the specific run of the experiment.
+#In summary, this YAML configuration sets up the NeptuneLogger to log training information to Neptune. The "api_key" and "project" parameters are used for authentication and to specify the Neptune project. The "log_model_checkpoints" parameter determines whether model checkpoints will be logged. The "prefix" parameter can be used to customize the run name in Neptune.

@@ -110,3 +110,18 @@ def get_metric_value(metric_dict: dict, metric_name: str) -> float:
     log.info(f"Retrieved metric value! <{metric_name}={metric_value}>")
 
     return metric_value
+
+
+
+#In the 'utils' folder inside 'src', there are several Python utility functions:
+
+#extras(cfg: DictConfig) -> None: This function applies optional utilities before starting the task. The utilities it applies include:
+
+#Disabling Python warnings if the cfg.extras.ignore_warnings field is set to True.
+#Enforcing tags from the command line if the cfg.extras.enforce_tags field is set to True.
+#Printing the configuration tree using the Rich library if the cfg.extras.print_config field is set to True.
+#task_wrapper(task_func: Callable) -> Callable: This function is a decorator that wraps a task function to control the failure behavior when executing the task. It is used to ensure that loggers are closed even if the task function raises an exception, to save the exception to a .log file, and to mark the run as failed with a dedicated file in the logs/ folder. This wrapper is useful for handling exceptions during task execution and is commonly used when executing tasks within a multi-run context.
+
+#get_metric_value(metric_dict: dict, metric_name: str) -> float: This function safely retrieves the value of a metric logged in a LightningModule. It takes a metric_dict (a dictionary containing metric values) and a metric_name as input. If the metric_name is found in the metric_dict, it returns the corresponding metric value. If the metric_name is not found, it raises an exception indicating that the metric value was not found.
+
+#These utility functions provide various functionalities to enhance the execution and logging of tasks, handle exceptions, and safely retrieve metric values during the training process.

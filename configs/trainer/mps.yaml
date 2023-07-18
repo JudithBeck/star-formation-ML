@@ -3,3 +3,19 @@ defaults:
 
 accelerator: mps
 devices: 1
+
+# The 'defaults' section specifies the default configuration file(s) to be loaded.
+# In this case, 'default.yaml' is being used as the default configuration.
+#defaults:
+#  - default.yaml
+
+# The 'accelerator' setting specifies the accelerator to be used for training.
+# Here, it is set to 'mps', which may refer to a custom accelerator or a specific feature in the framework being used.
+# Since 'mps' is not a standard accelerator in common machine learning libraries like PyTorch or TensorFlow,
+# further details on its purpose and functionality are needed, potentially from the framework's documentation.
+#accelerator: mps
+
+# The 'devices' setting indicates the number of devices (e.g., GPU devices) to be used for training.
+# In this configuration, it is set to '1', meaning only one device will be used for training.
+# The specific device type (e.g., GPU) is determined by the 'accelerator' setting.
+#devices: 1

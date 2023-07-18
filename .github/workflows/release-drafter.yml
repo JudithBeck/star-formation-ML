@@ -25,3 +25,45 @@ jobs:
       - uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+# name: Release Drafter
+# Dies ist der Name des Workflows - "Release Drafter". Es wird verwendet, um Release-Notizen zu erstellen.
+
+# on:
+# Hier wird definiert, welche Ereignisse den Workflow auslösen. In diesem Fall wird der Workflow ausgelöst, wenn Code in den "main"-Branch gepusht wird.
+# Das bedeutet, dass der Workflow automatisch ausgeführt wird, wenn Änderungen in den "main"-Branch gepusht werden.
+
+# permissions:
+# Dieser Abschnitt ermöglicht die Definition von Berechtigungen für den Workflow. Hier wird "contents: read" festgelegt, was bedeutet, dass der Workflow Lesezugriff auf den Inhalt des Repositorys hat.
+
+# jobs:
+# Dieser Abschnitt enthält die Liste der Jobs, die in diesem Workflow ausgeführt werden. Ein Job ist eine Sammlung von Schritten, die auf demselben Runner ausgeführt werden.
+
+# update_release_draft:
+# Dies ist der Name des Jobs. In diesem Fall ist es der Job "update_release_draft", der Release-Notizen aktualisiert.
+
+# permissions:
+# Hier werden die Berechtigungen für diesen spezifischen Job definiert. Der Job benötigt "contents: write"-Berechtigung, um eine GitHub-Release zu erstellen.
+# Außerdem benötigt der Job "pull-requests: write"-Berechtigung für den Auto-Labeler (autolabeler). Falls der Auto-Labeler nicht verwendet wird, würde "read"-Berechtigung ausreichen.
+
+# runs-on: ubuntu-latest
+# Dies gibt an, auf welchem Runner der Job ausgeführt wird. In diesem Fall wird der Job auf einem "ubuntu-latest"-Runner ausgeführt, der eine Maschine mit der neuesten Version von Ubuntu verwendet.
+
+# steps:
+# Dies ist die Liste der einzelnen Schritte, die im Job ausgeführt werden. Jeder Schritt führt eine spezifische Aktion aus.
+
+# - uses: release-drafter/release-drafter@v5
+# In diesem Schritt wird die "release-drafter/release-drafter@v5"-Action verwendet, um die Release-Notizen zu erstellen.
+# Die Action zieht automatisch Release-Notizen, wenn Pull Requests in den "master"-Branch gemerged werden.
+
+# env:
+# Hier können Umgebungsvariablen definiert werden, die in diesem Schritt verwendet werden. In diesem Fall wird das "GITHUB_TOKEN" verwendet,
+# das automatisch von GitHub bereitgestellt wird. Es ist ein spezielles Token, das zur Authentifizierung bei GitHub API-Anfragen verwendet wird.
+
+# ${{ secrets.GITHUB_TOKEN }}:
+# Dies ist eine spezielle Syntax, die auf den Wert des Geheimnisses "GITHUB_TOKEN" zugreift. Geheimnisse sind sicher gespeicherte Variablen in GitHub,
+# die in Workflows verwendet werden können, um sensible Informationen zu schützen.
+
+

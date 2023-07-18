@@ -153,3 +153,12 @@ configs/local/default.yaml
 
 # Aim logging
 .aim
+
+
+#The provided .gitignore file is used to specify which files and directories should be ignored by Git, and not tracked or committed to version control. Ignoring certain files is useful to avoid cluttering the repository with unnecessary or sensitive information.
+
+#Here's the content of the .gitignore file:
+
+#This .gitignore file includes a variety of patterns to ignore common files and directories, such as compiled Python files (*.pyc, __pycache__/), build artifacts (build/, dist/, *.egg-info/), cache directories (.cache/, .pytest_cache/, .mypy_cache/), and various project-specific directories (instance/, .vscode/, .idea/, etc.).
+
+#It's worth noting that the .gitignore file may vary depending on the specific needs of the project and the tools being used. The provided file seems to be quite comprehensive and should help keep the repository clean and organized.

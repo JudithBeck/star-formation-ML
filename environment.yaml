@@ -42,3 +42,22 @@ dependencies:
       - hydra-optuna-sweeper
       - hydra-colorlog
       - pyrootutils
+
+
+#Using an environment.yaml file instead of requirements.txt can offer several advantages, especially when working with Conda as the package manager. Below are some reasons you might want to use environment.yaml:
+
+#Dependency Control: Conda provides proper dependency control across all packages. When creating the environment using the environment.yaml file, Conda ensures that all package dependencies are fulfilled simultaneously, preventing any potential conflicts between different package versions.
+
+#Binary Installation: Conda installs precompiled binaries for packages, which means that you don't need certain compilers or libraries installed on your system. This can simplify the setup process, especially for packages with complex build requirements.
+
+#Specifying Versions: In environment.yaml, you can specify versions of packages to avoid any potential issues caused by installing the latest major versions. This approach helps to maintain consistency and stability across different environments and users.
+
+#Channels: Conda allows you to specify channels from which packages will be installed. In the provided example, pytorch, conda-forge, and defaults channels are used. Channels offer a way to access different versions of packages and can be helpful in finding specific packages or custom distributions.
+
+#Managing Pip Packages: The environment.yaml file can also include specific versions of packages installed via Pip. This allows you to use Conda for most package installations while still being able to install certain packages from PyPI using Pip.
+
+#Virtual Environments: Conda environments, created from environment.yaml, offer a complete isolated environment with all the specified dependencies. This helps in maintaining clean and separate environments for different projects, avoiding conflicts between projects' dependencies.
+
+#Reproducibility: The environment.yaml file provides a clear and reproducible specification of the environment needed for your project. This makes it easier to share and recreate the exact environment on different systems.
+
+#In summary, using environment.yaml with Conda provides a powerful and flexible way to manage your project's dependencies, ensuring proper dependency control and easy reproducibility across different environments. It is especially useful when working with complex projects involving multiple packages and dependencies.

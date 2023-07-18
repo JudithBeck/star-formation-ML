@@ -3,3 +3,17 @@
 model_summary:
   _target_: lightning.pytorch.callbacks.RichModelSummary
   max_depth: 1 # the maximum depth of layer nesting that the summary will include
+
+
+# https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.callbacks.RichModelSummary.html
+
+# model_summary:
+# This section defines the configuration for the "RichModelSummary" callback from the lightning.pytorch.callbacks module.
+
+# _target_: lightning.pytorch.callbacks.RichModelSummary
+# This specifies the target class for the "RichModelSummary" callback.
+
+# max_depth: 1
+# This sets the maximum depth of layer nesting that the summary will include. The "RichModelSummary" callback provides a summary of the model architecture, including the layers and their parameters. Setting "max_depth" to 1 means that only the top-level layers will be included in the summary, without displaying the internal structure of nested layers.
+
+# In summary, this YAML configuration sets up the "RichModelSummary" callback from the lightning.pytorch.callbacks module. It configures the summary generation for the model architecture, limiting the displayed layers' depth to the top-level layers (depth of 1). The summary will provide insights into the model's structure and its parameters at the specified depth.

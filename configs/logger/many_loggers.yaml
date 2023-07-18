@@ -7,3 +7,18 @@ defaults:
   # - neptune.yaml
   - tensorboard.yaml
   - wandb.yaml
+
+#train with many loggers at once
+#In this YAML configuration, multiple loggers are set up simultaneously for training. However, most of the loggers are commented out using #, so only the loggers with the .yaml extension will be active. Let's explain each part:
+#defaults:
+#- comet.yaml
+#- mlflow.yaml
+#- neptune.yaml
+#The defaults section allows you to specify default configurations for your experiment. In this case, multiple loggers are listed but are commented out using #, so they will not be used as the default loggers for the experiment.
+#- csv.yaml
+#The csv.yaml file is included as a default configuration. This means that the CSVLogger, as defined in the csv.yaml file, will be used for logging during the experiment.
+#- tensorboard.yaml
+#The tensorboard.yaml file is included as a default configuration. This means that the TensorBoardLogger, as defined in the tensorboard.yaml file, will be used for logging during the experiment.
+#- wandb.yaml
+#The wandb.yaml file is included as a default configuration. This means that the WandbLogger, as defined in the wandb.yaml file, will be used for logging during the experiment.
+#In summary, this YAML configuration sets up multiple loggers for training, but only the CSVLogger, TensorBoardLogger, and WandbLogger are active, as they are the only ones not commented out. The defaults section specifies the default loggers for the experiment, and each .yaml file represents the configuration for a specific logger. Other loggers, such as CometLogger, MLFlowLogger, and NeptuneLogger, are present but commented out, so they will not be used unless uncommented.

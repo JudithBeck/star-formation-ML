@@ -83,6 +83,9 @@ def evaluate(cfg: DictConfig) -> Tuple[dict, dict]:
         y_pred.append(batch)
     y_pred = np.array(torch.cat(y_pred, dim=0).detach())
 
+    # a negative mass makes no sense, so we set negative values in the fifth column to 0 (min value of scaler)
+    y_pred[:, 4] = np.where(y_pred[:, 4] < 0, 0, y_pred[:, 4])
+
     # collect input and true data
     x_test = []
     y_test = []
@@ -99,11 +102,15 @@ def evaluate(cfg: DictConfig) -> Tuple[dict, dict]:
     y_pred_rescaled = scaler.inverse_transform(y_pred)
     y_test_rescaled = scaler.inverse_transform(y_test)
 
+    # inverse log10 transform of 3rd and 5th column
+    y_pred_rescaled[:, 2] = 10**y_pred_rescaled[:, 2]
+    y_pred_rescaled[:, 4] = 10**y_pred_rescaled[:, 4]
+
     # save data
     np.save(os.path.join(cfg.paths.output_dir, "x_test.npy"), x_test)
     np.save(os.path.join(cfg.paths.output_dir, "y_test.npy"), y_test)
-    np.save(os.path.join(cfg.paths.output_dir, "y_test_rescaled.npy"), y_test_rescaled)
     np.save(os.path.join(cfg.paths.output_dir, "y_pred.npy"), y_pred)
+    np.save(os.path.join(cfg.paths.output_dir, "y_test_rescaled.npy"), y_test_rescaled)
     np.save(os.path.join(cfg.paths.output_dir, "y_pred_rescaled.npy"), y_pred_rescaled)
     
     metric_dict = trainer.callback_metrics
@@ -122,3 +129,29 @@ def main(cfg: DictConfig) -> None:
 
 if __name__ == "__main__":
     main()
+
+
+
+#This script appears to be the main entry point for evaluating a model checkpoint on a test dataset using Hydra for configuration. Let's break down the script step by step:
+
+#The script starts with importing necessary modules and functions from various files in the 'src' folder.
+
+#It sets up the project root directory using the pyrootutils.setup_root function, which includes adding the project root directory to the PYTHONPATH and loading environment variables from ".env" in the root directory.
+
+#The evaluate function is defined, which is the main evaluation process. It takes the configuration (cfg) as input and performs the evaluation process on the test dataset using the specified checkpoint.
+
+#The evaluation process includes instantiating the data module, model, loggers, and trainer from the configuration (cfg). The hyperparameters are also logged using the log_hyperparameters function if loggers are available.
+
+#The evaluation process is performed using the trainer.predict method to get predictions for the test dataset.
+
+#The evaluation results are processed, including rescaling the predictions using a scaler (loaded from file), inverse log10 transform of specific columns, and saving the evaluation data to output files.
+
+#The main function is defined, which serves as the entry point for the script. It uses Hydra to load the configuration (cfg) from the "eval.yaml" file located in the "configs" folder.
+
+#The utils.extras function is called to apply extra utilities to the configuration, such as enforcing tags, printing the configuration tree, and disabling Python warnings.
+
+#Finally, the evaluate function is called with the loaded configuration to perform the evaluation process.
+
+#If this script is executed directly, the main function is called, and the evaluation process is initiated based on the specified configuration.
+
+#Overall, this script provides a flexible and configurable way to perform model evaluation using Hydra for configuration management and includes various utility functions to enhance the evaluation process#.

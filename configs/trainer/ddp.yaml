@@ -7,3 +7,39 @@ accelerator: gpu
 devices: 4
 num_nodes: 1
 sync_batchnorm: True
+
+
+# The 'defaults' section specifies the default configuration file(s) to be loaded.
+# In this case, 'default.yaml' is being used as the default configuration.
+#defaults:
+#  - default.yaml
+
+# The 'strategy' setting specifies the training strategy to be used.
+# Here, it is set to 'ddp', which stands for Distributed Data Parallel training.
+# DDP is typically used to train models in a distributed manner across multiple devices (GPUs or nodes).
+#strategy: ddp
+
+# The 'accelerator' setting specifies the accelerator to be used for training.
+# Here, it is set to 'gpu', indicating that the model will be trained on GPU(s).
+#accelerator: gpu
+
+# The 'devices' setting indicates the number of devices (GPU devices) to be used for training.
+# In this configuration, it is set to '4', which means four GPU devices will be used for training.
+#devices: 4
+
+# The 'num_nodes' setting specifies the number of nodes to use in the distributed training setup.
+# In this configuration, it is set to '1', which means all the training processes will be on a single node.
+#num_nodes: 1
+
+# The 'sync_batchnorm' setting controls whether to use synchronized batch normalization during training.
+# Here, it is set to 'True', which means synchronized batch normalization will be used.
+# Synchronized batch normalization is used in distributed training to ensure consistent statistics across different GPUs/nodes.
+#sync_batchnorm: True
+
+
+#The 'defaults' section specifies 'default.yaml' as the default configuration file to be loaded.
+#The 'strategy' setting is set to 'ddp', indicating the use of Distributed Data Parallel training.
+#The 'accelerator' is set to 'gpu', indicating that the model will be trained on GPU(s).
+#The 'devices' setting is set to '4', meaning the model will be trained on four GPU devices.
+#The 'num_nodes' setting is set to '1', implying all the training processes will be on a single node.
+#The 'sync_batchnorm' setting is set to 'True', indicating the use of synchronized batch normalization during training. This helps maintain consistent statistics across different GPUs/nodes in distributed training setups.

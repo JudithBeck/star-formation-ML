@@ -3,3 +3,21 @@ defaults:
 
 accelerator: gpu
 devices: 1
+
+
+# The 'defaults' section specifies the default configuration file(s) to be loaded.
+# In this case, 'default.yaml' is being used as the default configuration.
+#defaults:
+#  - default.yaml
+
+# The 'accelerator' setting specifies the accelerator to be used for training.
+# Here, it is set to 'gpu', indicating that the model will be trained on GPU(s).
+#accelerator: gpu
+
+# The 'devices' setting indicates the number of devices (GPU devices) to be used for training.
+# In this configuration, it is set to '1', meaning only one GPU device will be used for training.
+#devices: 1
+
+#The 'defaults' section specifies 'default.yaml' as the default configuration file to be loaded.
+#The 'accelerator' is set to 'gpu', indicating that the model will be trained on GPU(s).
+#The 'devices' setting is set to '1', meaning the model will be trained using one GPU device.

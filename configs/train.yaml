@@ -50,3 +50,65 @@ ckpt_path: null
 
 # seed for random number generators in pytorch, numpy and python.random
 seed: null
+
+
+# @package _global_
+
+# The 'defaults' section specifies default configuration files to be loaded for various components.
+# '_self_' means it will look for a file with the same name as this file ('train.yaml').
+# Other configurations for data, model, callbacks, logger, trainer, paths, extras, hydra, experiment,
+# hparams_search, optional local, and debug are specified with their respective YAML files.
+#defaults:
+#  - _self_             # Load the default configuration from this file ('train.yaml')
+#  - data: stars.yaml   # Load the data module configuration from 'stars.yaml'
+#  - model: stars.yaml  # Load the model configuration from 'stars.yaml'
+#  - callbacks: default.yaml   # Load the callbacks configuration from 'default.yaml'
+#  - logger: null       # Do not use any logging configuration by default (can be set through command line)
+#  - trainer: default.yaml  # Load the trainer configuration from 'default.yaml'
+#  - paths: default.yaml    # Load the paths configuration from 'default.yaml'
+#  - extras: default.yaml   # Load any additional custom configuration from 'default.yaml'
+#  - hydra: default.yaml    # Load the Hydra configuration from 'default.yaml'
+#  - experiment: null       # Use 'null' for experiment configuration (can be used for version control)
+#  - hparams_search: null   # Use 'null' for hyperparameter optimization configuration
+#  - optional local: default.yaml  # Load optional local configuration from 'default.yaml'
+#  - debug: null            # Use 'null' for debugging configuration (can be enabled through the command line)
+
+# The 'task_name' specifies a name for the training task, which determines the output directory path.
+#task_name: "train"
+
+# The 'tags' section helps identify experiments with specific tags.
+# By default, it's tagged as "dev", but this can be overwritten in experiment configurations.
+# Tags can also be overwritten from the command line (e.g., `python train.py tags="[first_tag, second_tag]"`).
+#tags: ["dev"]
+
+# The 'train' setting determines whether to perform model training.
+# By default, it is set to 'True', indicating model training should be performed.
+#train: True
+
+# The 'test' setting determines whether to evaluate the model on the test set using the best model weights achieved during training.
+# By default, it is set to 'True', indicating evaluation on the test set is performed.
+# The 'lightning' library chooses the best weights based on the metric specified in the checkpoint callback.
+#test: True
+
+# The 'compile' setting controls whether to compile the model for faster training with PyTorch 2.0.
+# By default, it is set to 'False', meaning model compilation is disabled.
+#compile: False
+
+# The 'ckpt_path' setting is a placeholder for specifying the path to the checkpoint file to resume training.
+# The exact value for 'ckpt_path' needs to be filled in with the actual path to the checkpoint file if resuming training is required.
+#ckpt_path: null
+
+# The 'seed' setting specifies the seed for random number generators in PyTorch, NumPy, and Python's random module.
+# By default, it is set to 'null', meaning the seed is not specified, and random number generation is not controlled.
+#seed: null
+
+
+#The configuration file uses Hydra to specify various aspects of the training task.
+#It loads default configurations from other YAML files for data, model, callbacks, trainer, paths, and any additional custom configurations.
+#The 'task_name' is set to "train," determining the output directory path for the training task.
+#The experiment is tagged with "dev" by default, but this can be overwritten in experiment configurations or through the command line.
+#The 'train' setting is set to 'True', indicating model training should be performed.
+#The 'test' setting is set to 'True', indicating evaluation on the test set should be performed using the best model weights achieved during training.
+#Model compilation with PyTorch 2.0 is disabled by default.
+#The 'ckpt_path' is set to 'null', indicating no checkpoint path is provided initially.
+#The 'seed' is set to 'null', meaning random number generation is not controlled by a specific seed.

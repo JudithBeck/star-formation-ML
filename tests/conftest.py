@@ -79,3 +79,29 @@ def cfg_eval(cfg_eval_global, tmp_path) -> DictConfig:
     yield cfg
 
     GlobalHydra.instance().clear()
+
+
+
+#The code you provided contains fixtures for preparing config objects to be used in other tests. These fixtures help set up and modify configurations based on Hydra and OmegaConf to be used for testing purposes. Here's a breakdown of the code:
+
+#The code uses pytest fixtures, which are functions that are automatically run before and after tests.
+
+#The cfg_train_global fixture is responsible for generating the configuration object for training (cfg_train) that is shared across all test functions in the package.
+
+#The cfg_eval_global fixture is responsible for generating the configuration object for evaluation (cfg_eval) that is shared across all test functions in the package.
+
+#Both cfg_train_global and cfg_eval_global use the initialize function from Hydra to set up the Hydra framework for composing configurations from YAML files.
+
+#The compose function is used to load the YAML configuration files train.yaml and eval.yaml respectively, and return the composed configuration objects as cfg.
+
+#The configuration objects cfg_train_global and cfg_eval_global are then modified by using open_dict to set default values for certain configuration options that are shared across all tests.
+
+#Two additional fixtures, cfg_train and cfg_eval, are defined to generate specific configuration objects for individual test functions. These fixtures use cfg_train_global and cfg_eval_global, respectively, as the starting point and then modify them further to set up temporary output and log directories for each test function.
+
+#The cfg_train fixture is used for tests related to the training functionality, and the cfg_eval fixture is used for tests related to the evaluation functionality.
+
+#The yield statement inside the fixtures indicates the point where the actual test is executed. The test function that uses the fixture receives the modified configuration object (cfg) and can use it during the test.
+
+#After the test function has completed, the GlobalHydra instance is cleared to ensure that configurations do not leak between test functions.
+
+#In summary, these fixtures provide a convenient way to generate and modify configuration objects for different test scenarios, ensuring that each test has its own temporary directories for outputs and logs, while still sharing some common configuration settings across all tests.

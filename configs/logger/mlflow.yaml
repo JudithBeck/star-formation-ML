@@ -10,3 +10,33 @@ mlflow:
   prefix: ""
   artifact_location: null
   # run_id: ""
+
+
+#https://mlflow.org
+#In this YAML configuration, the MLFlowLogger is set up to log training information to MLflow, an open-source platform for managing machine learning experiments. Let's explain each part:
+#mlflow:
+#target: lightning.pytorch.loggers.mlflow.MLFlowLogger
+
+#experiment_name: ""
+#run_name: ""
+#tracking_uri: ${paths.log_dir}/mlflow/mlruns # run mlflow ui command inside the logs/mlflow/ dir to open the UI
+#tags: null
+
+#save_dir: "./mlruns"
+#prefix: ""
+#artifact_location: null
+
+#run_id: ""
+#target: lightning.pytorch.loggers.mlflow.MLFlowLogger
+#This specifies the target class for the MLFlowLogger from the lightning.pytorch.loggers.mlflow module. It means that the MLFlowLogger will be used for logging training information.
+#tracking_uri: ${paths.log_dir}/mlflow/mlruns
+#This sets the URI (Uniform Resource Identifier) for MLflow tracking. It defines the directory path where MLflow will store the experiment runs. The value of "${paths.log_dir}/mlflow/mlruns" points to the "mlruns" directory inside the "logs/mlflow/" directory. You can use the "mlflow ui" command within the "logs/mlflow/" directory to open the MLflow UI and view the logged information.
+#tags: null
+#This specifies the tags to be used for the MLflow experiment. Tags are key-value pairs that can be used to categorize and filter experiments.
+#prefix: ""
+#This sets the prefix for the run name in MLflow. The run name is used to identify the specific run of the experiment.
+#artifact_location: null
+#This specifies the location where MLflow will store artifacts. Artifacts are additional files or data associated with the experiment, such as model checkpoints, visualizations, or data files. The value of "null" means that the default artifact location will be used.
+#run_id: ""
+#This sets the ID of the specific run for the MLflow experiment. If provided, it will be used to identify and log information for the corresponding run.
+#In summary, this YAML configuration sets up the MLFlowLogger to log training information to MLflow. The "tracking_uri" parameter specifies the location where MLflow will store the experiment runs. The other parameters can be used to customize the MLflow experiment and its associated artifacts.

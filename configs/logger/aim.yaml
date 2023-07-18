@@ -26,3 +26,43 @@ aim:
 
   # enable/disable tracking console logs (default value is true)
   capture_terminal_logs: false # set to false to avoid infinite console log loop issue https://github.com/aimhubio/aim/issues/2550
+
+
+# https://aimstack.io/
+
+# example usage in lightning module:
+# https://github.com/aimhubio/aim/blob/main/examples/pytorch_lightning_track.py
+
+# open the Aim UI with the following command (run in the folder containing the `.aim` folder):
+# `aim up`
+
+#aim:
+#  _target_: aim.pytorch_lightning.AimLogger
+  # This specifies that the AimLogger will be used as the logging tool for this configuration.
+
+#  repo: ${paths.root_dir}
+  # This sets the repository path for Aim. The `.aim` folder, which contains the tracking data, will be created in the directory specified by `${paths.root_dir}`.
+
+  # repo: "aim://ip_address:port"
+  # Alternatively, you can provide an IP address and port for a remote Aim tracking server that manages the repository. See https://aimstack.readthedocs.io/en/latest/using/remote_tracking.html for more information.
+
+  # aim allows grouping runs under an experiment name
+#  experiment: null
+  # You can set this to any string to group runs under a specific experiment name. If not specified, it can be set to "default".
+
+#  train_metric_prefix: "train/"
+#  val_metric_prefix: "val/"
+#  test_metric_prefix: "test/"
+  # These settings specify the prefixes for different types of metrics. For example, "train/" is used for training metrics, "val/" for validation metrics, and "test/" for test metrics.
+
+#  system_tracking_interval: 10
+  # This sets the tracking interval in seconds for system usage metrics such as CPU, GPU, memory, etc. The system metrics will be logged every 10 seconds. Set it to null to disable system metrics tracking.
+
+#  log_system_params: true
+  # This enables logging of system parameters such as installed packages, git info, environment variables, etc.
+
+#  capture_terminal_logs: false
+  # This setting controls whether to capture and log console logs. It is set to false to avoid issues with infinite console log loops.
+
+#In summary, this YAML configuration sets up the AimLogger as the logging tool. Aim is used for experiment tracking and visualization. It allows grouping runs under different experiment names and provides various settings for logging metrics and system information. The logs will be stored in the .aim folder in the specified repository path.
+

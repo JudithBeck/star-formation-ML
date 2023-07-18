@@ -14,3 +14,31 @@ wandb:
   group: ""
   tags: []
   job_type: ""
+
+
+#https://wandb.ai
+#In this YAML configuration, the WandbLogger is set up to log training information to Weights & Biases (wandb.ai), a platform for experiment tracking and visualization. Let's explain each part:
+#wandb:
+#target: lightning.pytorch.loggers.wandb.WandbLogger
+#This specifies the target class for the WandbLogger from the lightning.pytorch.loggers.wandb module. It means that the WandbLogger will be used for logging training information.
+#save_dir: "${paths.output_dir}"
+#This sets the directory where the wandb logs will be saved. The value of "${paths.output_dir}" is likely to be a variable that represents the path to the output directory.
+#offline: False
+#This parameter specifies whether to run Wandb in offline mode. When set to "False", the logs will be synced with the online Wandb platform. When set to "True", the logs will be saved locally and not synced.
+#id: null
+#This parameter can be used to specify the ID of a previous run in Wandb. If provided, the logger will resume that experiment with the specified ID.
+#anonymous: null
+#This parameter can be used to enable anonymous logging in Wandb. When set to "True", the logs will be uploaded anonymously.
+#project: "lightning-hydra-template"
+#This sets the name of the project in Wandb to which the logs will be associated.
+#log_model: False
+#This parameter determines whether to upload the Lightning checkpoints to Wandb. When set to "True", the checkpoints will be uploaded.
+#prefix: ""
+#This sets the prefix for metric keys in Wandb. The prefix is added at the beginning of each metric key.
+#group: ""
+#This parameter can be used to group runs in Wandb. The runs with the same group name will be displayed together.
+#tags: []
+#This parameter can be used to specify tags for the run in Wandb. The tags provide additional information about the run.
+#job_type: ""
+#This parameter can be used to specify the job type for the run in Wandb.
+#In summary, this YAML configuration sets up the WandbLogger to log training information to Wandb (Weights & Biases). The "save_dir" parameter determines where the logs will be saved. The "offline" parameter controls whether the logs are synced with the online platform or saved locally. The "id" parameter can be used to resume a previous run with the specified ID. The "anonymous" parameter can be used to enable anonymous logging. The "project" parameter sets the project name in Wandb. The "log_model" parameter determines whether to upload the Lightning checkpoints. The "prefix" parameter sets a prefix for metric keys. The "group" parameter can be used to group runs, and "tags" can provide additional information about the run. The "job_type" parameter specifies the job type for the run.

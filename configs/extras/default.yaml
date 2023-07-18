@@ -6,3 +6,22 @@ enforce_tags: True
 
 # pretty print config tree at the start of the run using Rich library
 print_config: True
+
+
+# disable python warnings if they annoy you
+# This sets whether Python warnings should be ignored or not. If set to "False", Python warnings will not be ignored, and they may be displayed during the execution of the program.
+# ignore_warnings: False
+
+# ask user for tags if none are provided in the config
+# This sets whether the user will be asked to provide tags if none are provided in the config. If set to "True", the user will be prompted to provide tags if they are missing in the config.
+# enforce_tags: True
+
+# pretty print config tree at the start of the run using Rich library
+# This sets whether the configuration tree should be pretty-printed at the start of the run using the Rich library. If set to "True", the configuration tree will be displayed in a more visually appealing format for better readability.
+# print_config: True
+
+#In summary, this YAML configuration in the "extras" section sets options related to additional functionalities:
+
+#"ignore_warnings": If set to "False", Python warnings will not be ignored during program execution.
+#"enforce_tags": If set to "True," the user will be prompted to provide tags if none are provided in the configuration.
+#"print_config": If set to "True," the configuration tree will be pretty-printed at the start of the run using the Rich library, providing a more visually appealing and readable display of the configuration.

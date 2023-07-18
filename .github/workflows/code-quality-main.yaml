@@ -20,3 +20,19 @@ jobs:
 
       - name: Run pre-commits
         uses: pre-commit/action@v2.0.3
+
+
+#name: This is the name of the workflow. In this case, it's "Code Quality Main." It's just a human-readable label for the workflow.
+#on: This section defines the events that trigger the workflow. In this case, the workflow will be triggered when there is a push event on the main branch. It means that whenever code is pushed to the main branch, this workflow will be executed.
+#jobs: This section contains the list of jobs to be executed in this workflow. A job is a set of steps that run on the same runner.
+#code-quality: This is the name of the job. You can think of a job as a collection of steps that perform specific tasks.
+#runs-on: This specifies the type of runner the job will execute on. In this case, the job will run on an ubuntu-latest runner, which means it will use a machine running the latest version of Ubuntu.
+#steps: This is a list of individual tasks or steps that will be executed in the job. Each step performs a specific action.
+#- name: Checkout: This step checks out the repository code into the runner. It uses the actions/checkout@v2 action, which is an official GitHub Action for checking out code from the repository.
+#- name: Set up Python: This step sets up the Python environment on the runner. It uses the actions/setup-python@v2 action to configure the appropriate version of Python.
+#- name: Run pre-commits: This step runs pre-commit hooks on the code. It uses the pre-commit/action@v2.0.3 action, which is an official GitHub Action for running pre-commit hooks defined in your repository.
+#Pre-commit hooks are scripts or tools that automatically check and format your code before each commit to maintain code quality and consistency.
+#So, this GitHub Actions workflow performs three main tasks whenever there is a push event on the main branch:
+#Checks out the code into the runner.
+#Sets up the Python environment.
+#Runs pre-commit hooks on the code for code quality checks.

@@ -43,3 +43,12 @@ class MLP(nn.Module):
 
 if __name__ == "__main__":
     _ = MLP()
+
+
+#In the folder 'components' inside 'models' within the 'src' directory, you have a Python class named MLP. This class defines a Multi-Layer Perceptron (MLP) neural network using PyTorch's nn.Module as the base class.
+
+#The MLP class constructor initializes the MLP model with default layer sizes. The model consists of six fully connected (linear) layers followed by ReLU activation functions. The commented-out lines with nn.BatchNorm1d indicate that batch normalization layers are not used in this model.
+
+#The forward method defines how data flows through the model. It applies the sequence of layers defined in the constructor to the input 'x', returning the output of the model.
+
+#The provided script (__name__ == "__main__") checks if this module is run as the main program and instantiates the MLP class. However, it doesn't perform any specific operations in the current context.

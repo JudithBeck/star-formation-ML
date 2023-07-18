@@ -10,3 +10,36 @@ comet:
   experiment_key: null # set to resume experiment
   offline: False
   prefix: ""
+
+
+# https://www.comet.ml
+
+#comet:
+#  _target_: lightning.pytorch.loggers.comet.CometLogger
+  # This specifies that the CometLogger will be used as the logging tool for this configuration.
+
+#  api_key: ${oc.env:COMET_API_TOKEN}
+  # This sets the API key for Comet. The value of the `COMET_API_TOKEN` environment variable will be used as the API key. This key is required for authenticating and connecting to Comet.
+
+#  save_dir: "${paths.output_dir}"
+  # This sets the directory where the logged experiment data will be saved. The value of "${paths.output_dir}" likely represents a variable that points to the output directory.
+
+#  project_name: "lightning-hydra-template"
+  # This sets the name of the Comet project to which the experiment data will be logged. The experiment data will be associated with this project in the Comet dashboard.
+
+#  rest_api_key: null
+  # This is an optional setting. If you have a REST API key for Comet, you can provide it here. This key is used for additional authentication and access to Comet REST API features.
+
+  # experiment_name: ""
+  # You can specify a custom name for the experiment here, but it is currently commented out, so it will not be used.
+
+#  experiment_key: null
+  # If you want to resume a previous Comet experiment, you can provide the experiment key here. This allows you to continue logging data to an existing experiment.
+
+#  offline: False
+  # This setting determines whether Comet will run in offline mode. When set to False, Comet will connect to the Comet cloud and log the experiment data. When set to True, Comet will run in offline mode, and no data will be sent to the cloud.
+
+#  prefix: ""
+  # This is an optional prefix that can be added to all the metric names logged with Comet. It allows you to organize and group metrics under a specific prefix in the Comet dashboard.
+
+# In summary, this YAML configuration sets up the CometLogger as the logging tool. Comet is used for experiment tracking and visualization. It requires an API key for authentication, and the experiment data will be associated with the specified project in the Comet dashboard. You can also choose to resume a previous experiment by providing the experiment key. Additionally, you have the option to run Comet in offline mode, and you can add a prefix to the metric names for better organization in the Comet dashboard.

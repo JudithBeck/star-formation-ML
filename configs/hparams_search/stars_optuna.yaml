@@ -50,3 +50,51 @@ hydra:
       # model.net.lin1_size: choice(2048, 1024, 512)
       # model.net.lin2_size: choice(2048, 1024, 512)
       # model.net.lin3_size: choice(2048, 1024, 512)
+
+
+# @package _global_
+
+# example hyperparameter optimization of some experiment with Optuna:
+# This configuration is an example of hyperparameter optimization using Optuna. To run this optimization, you can execute the command "python train.py -m hparams_search=stars_optuna experiment=example".
+
+#defaults:
+#  - override /hydra/sweeper: optuna
+# This sets the default configuration for the "hydra/sweeper" option to "optuna". It means that Optuna will be used as the hyperparameter optimization tool.
+
+# choose metric which will be optimized by Optuna
+# This sets the metric that Optuna will optimize during the hyperparameter search. The value of "val/mae_best" represents the name of the metric logged in the lightning module.
+
+#optimized_metric: "val/mae_best"
+
+# here we define Optuna hyperparameter search
+# This section defines the hyperparameter search using Optuna.
+
+#hydra:
+#  mode: "MULTIRUN" # set hydra to multirun by default if this config is attached
+# This sets the Hydra mode to "MULTIRUN" by default when this configuration is attached.
+
+#  sweeper:
+#    _target_: hydra_plugins.hydra_optuna_sweeper.optuna_sweeper.OptunaSweeper
+
+    # storage URL to persist optimization results
+    # This sets the storage URL to persist the optimization results. It can be a URL to SQLite if set to 'sqlite:///example.db'.
+#    storage: null
+
+    # name of the study to persist optimization results
+ #   study_name: null
+    # This sets the name of the study to persist the optimization results.
+
+    # number of parallel workers
+ #   n_jobs: 6
+    # This sets the number of parallel workers for the optimization.
+
+    # 'minimize' or 'maximize' the objective
+  #  direction: minimize
+    # This sets the direction of the optimization objective. "minimize" means the objective will be minimized, and "maximize" means it will be maximized.
+
+    # total number of runs that will be executed
+   # n_trials: 6
+    # This sets the total number of optimization runs that will be executed.
+
+# In this configuration, we have an example of hyperparameter optimization using Optuna, a hyperparameter optimization library. The configuration is used to run hyperparameter search using the OptunaSweeper. The configuration sets the defaults for hyperparameter search with Optuna and defines the metric to be optimized during the search.
+# The configuration demonstrates how to set up hyperparameter optimization with Optuna using Hydra's multirun mode. The hyperparameters to optimize are defined in the 'params' section within the 'sweeper' section. In this example, the learning rate of the model optimizer, batch size for data loading, and other hyperparameters can be optimized during the search. The total number of optimization runs is set to 6 in this case.

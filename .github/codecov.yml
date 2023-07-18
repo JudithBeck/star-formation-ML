@@ -13,3 +13,41 @@ coverage:
 
     # project: off
     # patch: off
+
+
+
+# coverage:
+# Dies ist die Konfiguration für die Test-Coverage-Berichterstattung.
+
+# status:
+# Dieser Abschnitt definiert den Status der Testabdeckung.
+
+# project:
+# Dieser Abschnitt misst die Gesamtprojekt-Abdeckung (overall project coverage).
+# Es misst die Testabdeckung des gesamten Projekts.
+
+# default:
+# Dieser Abschnitt enthält die Standardkonfiguration für die Testabdeckung.
+
+# threshold: 100%
+# Hier wird die Schwelle (threshold) für die Testabdeckung festgelegt, die erreicht werden muss, damit die Tests als erfolgreich betrachtet werden.
+# In diesem Fall ist die Schwelle auf 100% gesetzt, was bedeutet, dass die Testabdeckung 100% betragen muss, um als erfolgreich zu gelten.
+# Ein beliebiger Abfall in der Testabdeckung (d. h. weniger als 100%) würde bedeuten, dass die Tests nicht erfolgreich sind.
+
+# patch:
+# Dieser Abschnitt misst die Testabdeckung für einen Pull Request (PR) oder einzelne Commits (single commit coverage).
+# Es misst die Testabdeckung für die Änderungen in einem PR oder einem einzelnen Commit.
+
+# default:
+# Dieser Abschnitt enthält die Standardkonfiguration für die Testabdeckung im Patch-Bereich.
+
+# threshold: 100%
+# Hier wird die Schwelle (threshold) für die Testabdeckung festgelegt, die erreicht werden muss, damit die Tests im Patch-Bereich als erfolgreich betrachtet werden.
+# In diesem Fall ist die Schwelle auf 100% gesetzt, was bedeutet, dass die Testabdeckung 100% betragen muss, um als erfolgreich zu gelten.
+# Ein beliebiger Abfall in der Testabdeckung (d. h. weniger als 100%) würde bedeuten, dass die Tests im Patch-Bereich nicht erfolgreich sind.
+
+# project: off
+# Hier wird die Testabdeckung für das gesamte Projekt deaktiviert (off). Das bedeutet, dass die Gesamtprojekt-Abdeckung nicht berücksichtigt wird.
+
+# patch: off
+# Hier wird die Testabdeckung im Patch-Bereich deaktiviert (off). Das bedeutet, dass die Testabdeckung für Pull Requests oder einzelne Commits nicht berücksichtigt wird.

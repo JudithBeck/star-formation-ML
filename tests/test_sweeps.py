@@ -88,3 +88,20 @@ def test_optuna_sweep_ddp_sim_wandb(tmp_path):
         "logger=wandb",
     ]
     run_sh_command(command)
+
+
+#These test functions use the RunIf decorator from the tests.helpers.run_if module to conditionally run certain test cases based on specific requirements. Here's a summary of each test function:
+
+#test_experiments(tmp_path): This test runs all available experiment configurations with fast_dev_run=True. It uses Hydra to sweep over all possible configurations defined in the configs/experiments directory. The run_sh_command() function is called to execute the training process with the given command.
+
+#test_hydra_sweep(tmp_path): This test performs a default Hydra sweep with two different learning rates for the optimizer. It uses the hydra.sweep.dir configuration to specify the output directory for the sweep results. The run_sh_command() function is called to execute the training process with the given command.
+
+#test_hydra_sweep_ddp_sim(tmp_path): This test is similar to the previous one but uses Distributed Data Parallel (DDP) simulation for training. It also sets some additional configuration options for the DDP trainer. The run_sh_command() function is called to execute the training process with the given command.
+
+#test_optuna_sweep(tmp_path): This test performs an Optuna sweep using the mnist_optuna configuration. It specifies the number of trials and startup trials for the Optuna sweeper. The run_sh_command() function is called to execute the training process with the given command.
+
+#test_optuna_sweep_ddp_sim_wandb(tmp_path): This test is similar to the previous one but also uses Wandb as the logger and DDP simulation for training. The run_sh_command() function is called to execute the training process with the given command.
+
+#All these test functions are decorated with @RunIf(sh=True) or @RunIf(wandb=True, sh=True), which means they will only be executed if the required conditions are met (i.e., the sh or wandb packages are available in the environment, and the tests are not skipped). The conditions are specified in the RunIf decorator using the sh and wandb flags, which check the availability of the sh and wandb packages, respectively.
+
+#These tests are useful for evaluating different configurations and training options to ensure that the training process works as expected and produces meaningful results. They help ensure that the training and hyperparameter optimization processes are functioning correctly.

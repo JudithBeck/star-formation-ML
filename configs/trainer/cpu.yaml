@@ -3,3 +3,26 @@ defaults:
 
 accelerator: cpu
 devices: 1
+
+
+# This file is named 'default.yaml' and is located in the 'trainer' folder inside the 'configs' directory.
+
+# The 'defaults' section specifies the default configuration file(s) to be loaded.
+# In this case, 'default.yaml' is being used as the default configuration.
+#defaults:
+#  - default.yaml
+
+# The 'accelerator' setting specifies the accelerator to be used for training.
+# Here, it is set to 'cpu', indicating that the model will be trained on the CPU.
+#accelerator: cpu
+
+# The 'devices' setting indicates the number of devices (CPU cores or GPU devices) to be used for training.
+# In this configuration, it is set to '1', which means only one device will be used for training.
+#devices: 1
+
+To summarize:
+
+#The file named 'default.yaml' is located in the 'trainer' folder inside the 'configs' directory.
+#The 'defaults' section specifies 'default.yaml' as the default configuration file.
+#The 'accelerator' setting is set to 'cpu', indicating that the model will be trained on the CPU.
+#The 'devices' setting is set to '1', meaning only one device (CPU core) will be used for training. As the accelerator is set to 'cpu', training will likely be performed on a single CPU core.

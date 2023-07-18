@@ -8,3 +8,22 @@ tensorboard:
   default_hp_metric: True
   prefix: ""
   # version: ""
+
+#https://www.tensorflow.org/tensorboard/
+#In this YAML configuration, the TensorBoardLogger is set up to log training information to TensorBoard, a visualization tool provided by TensorFlow. Let's explain each part:
+#tensorboard:
+#target: lightning.pytorch.loggers.tensorboard.TensorBoardLogger
+#This specifies the target class for the TensorBoardLogger from the lightning.pytorch.loggers.tensorboard module. It means that the TensorBoardLogger will be used for logging training information.
+#save_dir: "${paths.output_dir}/tensorboard/"
+#This sets the directory where the TensorBoard logs will be saved. The value of "${paths.output_dir}" is likely to be a variable that represents the path to the output directory.
+#name: null
+#This parameter specifies the name of the experiment run in TensorBoard. If set to "null", a default name will be used.
+#log_graph: False
+#This parameter determines whether to log the computational graph to TensorBoard. When set to "True", the graph will be logged.
+#default_hp_metric: True
+#This parameter specifies whether to log the default hyperparameter metric to TensorBoard. When set to "True", the default hyperparameter metric will be logged.
+#prefix: ""
+#This sets the prefix for the run name in TensorBoard. The run name is used to identify the specific run of the experiment.
+#version: ""
+#This parameter can be used to specify a version for the run in TensorBoard. If not specified, the version will be automatically generated.
+#In summary, this YAML configuration sets up the TensorBoardLogger to log training information to TensorBoard. The "save_dir" parameter determines where the logs will be saved. The "name" parameter can be used to customize the run name, and the "log_graph" parameter controls whether the computational graph is logged. The "default_hp_metric" parameter determines whether the default hyperparameter metric is logged, and the "prefix" parameter can be used to customize the run name prefix. The "version" parameter is optional and can be used to specify a version for the run.

@@ -137,3 +137,36 @@ class RunIf:
             reason=f"Requires: [{' + '.join(reasons)}]",
             **kwargs,
         )
+
+
+
+#The code you provided defines a RunIf class, which is a custom wrapper for conditional skipping of tests in pytest. The RunIf class allows you to skip test functions based on various conditions, such as minimum GPU count, minimum PyTorch version, operating system, package availability, and more.
+
+#Here's an overview of the RunIf class and its usage:
+
+#The __new__ method is overridden to create instances of the RunIf class. This method is called when you use the @RunIf decorator on a test function.
+
+#The __new__ method takes several keyword arguments that represent the conditions for skipping the test. For example:
+
+#min_gpus: Minimum number of GPUs required to run the test.
+#min_torch: Minimum PyTorch version required to run the test.
+#max_torch: Maximum PyTorch version required to run the test.
+#min_python: Minimum Python version required to run the test.
+#skip_windows: If True, the test will be skipped on Windows platform.
+#tpu, sh, fairscale, deepspeed, wandb, neptune, comet, mlflow: If True, the corresponding package is required to run the test.
+#The method checks the specified conditions and stores the reasons for skipping the test in the reasons list.
+
+#The RunIf class is designed to be fully compatible with @pytest.mark, which allows it to be used as a decorator alongside other pytest.mark decorators for test functions.
+
+#When you decorate a test function with @RunIf, it will skip the test if any of the specified conditions are met. The test will be marked with a reason indicating why it was skipped based on the conditions that failed.
+
+#For example, the following code shows how you can use the RunIf class to skip a test based on the PyTorch version:
+
+#python
+#Copy code
+#@RunIf(min_torch="1.8")
+#def test_wrapper():
+#    assert True
+#In this example, the test function test_wrapper will only run if the installed PyTorch version is greater than or equal to 1.8. If the condition is not met (i.e., PyTorch version is less than 1.8), the test will be skipped with the reason "Requires: torch>=1.8".
+
+#The RunIf class provides a flexible way to conditionally skip tests based on various requirements, making it easier to handle different testing scenarios across different environments and configurations.

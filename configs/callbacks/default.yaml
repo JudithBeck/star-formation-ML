@@ -20,3 +20,64 @@ early_stopping:
 
 model_summary:
   max_depth: -1
+
+
+
+# defaults:
+# This section defines the default configuration files for the 'callbacks' folder.
+
+# - model_checkpoint.yaml
+# This is the first default configuration file named "model_checkpoint.yaml".
+
+# - early_stopping.yaml
+# This is the second default configuration file named "early_stopping.yaml".
+
+# - model_summary.yaml
+# This is the third default configuration file named "model_summary.yaml".
+
+# - rich_progress_bar.yaml
+# This is the fourth default configuration file named "rich_progress_bar.yaml".
+
+# - _self_
+# This is a special default configuration file named "_self_". It may refer to a configuration that applies to the whole 'callbacks' folder.
+
+# model_checkpoint:
+# This section defines the configuration for the "model_checkpoint" callback.
+
+# dirpath: ${paths.output_dir}/checkpoints
+# This sets the directory path for saving the checkpoints. The value is calculated based on the "paths.output_dir" variable.
+
+# filename: "epoch_{epoch:03d}"
+# This sets the filename format for the saved checkpoints. It includes the epoch number formatted with three digits.
+
+# monitor: "val/mae"
+# This sets the metric to monitor for deciding the best checkpoints. It uses "val/mae" as the validation mean absolute error.
+
+# mode: "min"
+# This sets the mode for monitoring the metric. It means the callback will try to minimize the "val/mae" metric value.
+
+# save_last: True
+# This sets whether to save the last model checkpoint during training. It is set to True.
+
+# auto_insert_metric_name: False
+# This sets whether to automatically insert the metric name in the checkpoint filename. It is set to False.
+
+# early_stopping:
+# This section defines the configuration for the "early_stopping" callback.
+
+# monitor: "val/mae"
+# This sets the metric to monitor for early stopping. It uses "val/mae" as the validation mean absolute error.
+
+# patience: 100
+# This sets the patience value for early stopping. It means training will stop if the "val/mae" metric doesn't improve for 100 epochs.
+
+# mode: "min"
+# This sets the mode for monitoring the early stopping metric. It means the callback will try to minimize the "val/mae" metric value.
+
+# model_summary:
+# This section defines the configuration for the "model_summary" callback.
+
+# max_depth: -1
+# This sets the maximum depth for printing the model summary. A value of -1 means the entire model summary will be printed.
+
+# In summary, the YAML configuration file in the 'configs' folder defines default configuration files for the 'callbacks' folder and provides specific configurations for three callbacks: "model_checkpoint," "early_stopping," and "model_summary." Each callback has its own set of parameters that control its behavior during model training. The file also uses variables and special markers to customize some settings.

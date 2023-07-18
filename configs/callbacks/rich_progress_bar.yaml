@@ -2,3 +2,14 @@
 
 rich_progress_bar:
   _target_: lightning.pytorch.callbacks.RichProgressBar
+
+
+# https://lightning.ai/docs/pytorch/latest/api/lightning.pytorch.callbacks.RichProgressBar.html
+
+# rich_progress_bar:
+# This section defines the configuration for the "RichProgressBar" callback from the lightning.pytorch.callbacks module.
+
+# _target_: lightning.pytorch.callbacks.RichProgressBar
+# This specifies the target class for the "RichProgressBar" callback.
+
+# In summary, this YAML configuration sets up the "RichProgressBar" callback from the lightning.pytorch.callbacks module. The "RichProgressBar" provides a visually rich progress bar during training, showing real-time updates of training progress, such as the current epoch, batch, and training metrics. It enhances the training experience by providing a visually appealing and informative progress bar.

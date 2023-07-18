@@ -42,3 +42,56 @@ template: |
   ## Changes
 
   $CHANGES
+
+
+# name-template: "v$RESOLVED_VERSION"
+# tag-template: "v$RESOLVED_VERSION"
+
+# categories:
+# This section defines the categories for grouping pull requests based on their labels.
+
+# - title: "🚀 Features"
+# This category is titled "Features" and includes pull requests with labels "feature" or "enhancement".
+
+# - title: "🐛 Bug Fixes"
+# This category is titled "Bug Fixes" and includes pull requests with labels "fix", "bugfix", or "bug".
+
+# - title: "🧹 Maintenance"
+# This category is titled "Maintenance" and includes pull requests with labels "maintenance", "dependencies", "refactoring", "cosmetic", or "chore".
+
+# - title: "📝️ Documentation"
+# This category is titled "Documentation" and includes pull requests with labels "documentation" or "docs".
+
+# change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+# This specifies the template for displaying the changes made in the release notes.
+# The $TITLE, $AUTHOR, and $NUMBER variables will be replaced with the corresponding PR title, author, and number.
+
+# change-title-escapes: '\<*_&' # You can add # and @ to disable mentions
+# This specifies the characters to escape in the pull request title for avoiding mentions in the release notes.
+# In this case, '<', '*', '_', and '&' will be escaped, and '@', '#' will be added to the escape list to disable mentions.
+
+# version-resolver:
+# This section defines the version resolver based on the labels assigned to pull requests.
+
+# major:
+# This defines the major version update and includes pull requests with the "major" label.
+
+# minor:
+# This defines the minor version update and includes pull requests with the "minor" label.
+
+# patch:
+# This defines the patch version update and includes pull requests with the "patch" label.
+
+# default: patch
+# This sets the default version update to "patch" if a pull request doesn't have any of the specified labels.
+
+# template: |
+# This starts the template for the release notes.
+
+# ## Changes
+# This is the heading for the "Changes" section in the release notes.
+
+# $CHANGES
+# This is where the actual changes made by pull requests will be listed.
+
+# In summary, this YAML template sets up a configuration for generating release notes based on pull request labels. It defines categories for different types of changes (features, bug fixes, maintenance, and documentation) and specifies the template for displaying the changes in the release notes. It also sets up a version resolver based on labels to determine the version update for the release. The template then includes a placeholder $CHANGES for listing the actual changes made by pull requests in the release notes. 

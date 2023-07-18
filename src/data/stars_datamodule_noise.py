@@ -36,6 +36,7 @@ class StarsDataModule(LightningDataModule):
         https://lightning.ai/docs/pytorch/latest/data/datamodule.html
     """
 
+
     def __init__(
         self,
         data_dir: str = "data/",
@@ -74,6 +75,9 @@ class StarsDataModule(LightningDataModule):
             spectra = np.loadtxt(os.path.join(self.hparams.data_dir, 'dataset_plusMass_smallRadius.txt'))
             labels = np.loadtxt(os.path.join(self.hparams.data_dir, 'parameterset_plusMass_smallRadius.txt'))
 
+            NOISE = 0.75
+            spectra_noise = np.random.normal(spectra, scale=NOISE)
+
             # only keep first 5 columns of labels
             labels = labels[:, :5]
 
@@ -89,11 +93,11 @@ class StarsDataModule(LightningDataModule):
             joblib.dump(scaler, os.path.join(self.hparams.data_dir, 'scaler.gz'))
 
             # convert to torch tensors
-            spectra = torch.from_numpy(spectra).float()
+            spectra_noise = torch.from_numpy(spectra_noise).float()
             labels = torch.from_numpy(labels).float()
 
             # create dataset
-            dataset = StarsDataset(spectra, labels)
+            dataset = StarsDataset(spectra_noise, labels)
 
             # split dataset
             self.data_train, self.data_val, self.data_test = random_split(
@@ -101,6 +105,10 @@ class StarsDataModule(LightningDataModule):
                 lengths=self.hparams.train_val_test_split,
                 generator=torch.Generator().manual_seed(42),
             )
+
+            np.save(os.path.join(cfg.paths.output_dir, "NOISE.npy"), NOISE)
+            np.save(os.path.join(cfg.paths.output_dir, "spectra.npy"), spectra)
+
 
     def train_dataloader(self):
         return DataLoader(
@@ -154,12 +162,12 @@ class StarsDataModule(LightningDataModule):
 class StarsDataset(Dataset):
     def __init__(
             self,
-            spectra,
+            spectra_noise,
             labels,
     ):
         super().__init__()
 
-        self.spectra = spectra
+        self.spectra_noise = spectra_noise
         self.labels = labels
         self.num_samples = len(self.labels)
 
@@ -167,7 +175,7 @@ class StarsDataset(Dataset):
         return self.num_samples
 
     def __getitem__(self, index):
-        x = self.spectra[index]
+        x = self.spectra_noise[index]
         y = self.labels[index]
         return x, y
 

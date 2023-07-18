@@ -121,3 +121,31 @@ repos:
             "--extend-ignore=E203,E402,E501,F401,F841",
             "--exclude=logs/*,data/*",
           ]
+
+
+
+#This is a configuration file for pre-commit, a useful tool for managing and applying pre-commit hooks in your Git repository. Pre-commit hooks are scripts or tools that are executed before a commit is made to perform various checks and formatting tasks on the code, ensuring that it adheres to certain standards or conventions.
+
+#In this configuration file, you have specified various pre-commit hooks, each provided by different repositories (URLs), along with their revisions (versions) and specific configurations (if any). Let's go through each hook:
+
+#trailing-whitespace: Removes trailing whitespace at the end of lines.
+#end-of-file-fixer: Ensures there is an empty line at the end of each file.
+#check-docstring-first: Verifies that a docstring exists as the first statement in a module, function, or class.
+#check-yaml: Validates YAML files for syntax errors.
+#debug-statements: Checks for debug statements (e.g., print) in the code.
+#detect-private-key: Searches for private keys in the codebase.
+#check-executables-have-shebangs: Ensures executable files have shebangs (e.g., #!/usr/bin/env python).
+#check-toml: Validates TOML files for syntax errors.
+#check-case-conflict: Checks for files with names that differ only in case (case conflict).
+#check-added-large-files: Prevents large files from being committed.
+#And many more hooks...
+
+#Each hook is specified by its unique identifier (id), and if necessary, additional arguments are provided to customize the hook's behavior.#
+
+#For example, the hook black from the psf/black repository is used for Python code formatting. It is given the argument --line-length 99 to enforce a line length of 99 characters.
+
+#Similarly, the hook flake8 from the PyCQA/flake8 repository is used for Python code checks. It is given the argument --extend-ignore E203,E402,E501,F401,F841 to extend the list of ignored error codes and --exclude logs/*,data/* to exclude certain directories from linting.
+
+#Each hook is executed in the order they appear in the configuration file, and if any hook returns a non-zero exit code, the commit will be rejected.
+
+#The configuration file effectively sets up a pipeline of pre-commit checks and formatting tasks, ensuring that your code complies with specific standards and practices before it is committed to the repository.

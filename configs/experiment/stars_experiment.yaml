@@ -33,3 +33,71 @@ logger:
     name: "stars"
   aim:
     experiment: "stars"
+
+
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+# defaults:
+# This section specifies default configurations for the experiment.
+
+# - override /data: stars.yaml
+# This includes a YAML file named "stars.yaml" to override default data configurations located at the "/data" path.
+
+# - override /model: stars.yaml
+# This includes a YAML file named "stars.yaml" to override default model configurations located at the "/model" path.
+
+# - override /callbacks: default.yaml
+# This includes a YAML file named "default.yaml" to override default callback configurations located at the "/callbacks" path.
+
+# - override /trainer: default.yaml
+# This includes a YAML file named "default.yaml" to override default trainer configurations located at the "/trainer" path.
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+# tags: ["stars", "mlp"]
+# This sets the tags for the experiment. The tags can be used to categorize and filter experiments.
+
+# seed: 12345
+# This sets the random seed for reproducibility. All random operations will be seeded with the value 12345.
+
+# trainer:
+# This section contains configurations for the training process.
+
+# min_epochs: 100
+# This sets the minimum number of epochs for training to 100.
+
+# max_epochs: 400
+# This sets the maximum number of epochs for training to 400.
+
+# gradient_clip_val: 0.5
+# This sets the value for gradient clipping during training. Gradient clipping can prevent exploding gradients during training.
+
+# model:
+# This section contains configurations for the model.
+
+# optimizer:
+# This section contains configurations for the optimizer.
+
+# lr: 0.0001
+# This sets the learning rate of the optimizer to 0.0001.
+
+# data:
+# This section contains configurations for the data.
+
+# batch_size: 32
+# This sets the batch size for the data loader to 32.
+
+# logger:
+# This section contains configurations for the logger.
+
+# tensorboard:
+# This sets the name of the tensorboard logger to "stars".
+
+# aim:
+# This sets the experiment name for the AIM logger to "stars".
+
+# In summary, this YAML configuration specifies an experiment named "example" that can be executed using the command "python train.py experiment=example". It includes default configurations for data, model, callbacks, and trainer, which can be overridden by specific YAML files provided in the "override" section. The experiment is tagged with "stars" and "mlp" tags for categorization. A random seed of 12345 is set for reproducibility. The trainer is set to run for a minimum of 100 epochs and a maximum of 400 epochs, with a gradient clip value of 0.5. The model optimizer has a learning rate of 0.0001, and the data batch size is set to 32. Two loggers, TensorBoard and AIM, are configured with specific names for the experiment. This YAML configuration allows easy customization of the experiment by overriding specific parameters while keeping the rest as default.

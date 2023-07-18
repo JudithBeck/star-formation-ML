@@ -11,3 +11,27 @@ trainer:
 
 # model ckpt and early stopping need to be disabled during overfitting
 callbacks: null
+
+# @package _global_
+
+# overfits to 3 batches
+
+# defaults:
+# This section specifies default configurations for the experiment.
+
+# - default.yaml
+# This includes a YAML file named "default.yaml" that contains default configurations.
+
+# trainer:
+# This section contains configurations for the training process.
+
+# max_epochs: 20
+# This sets the maximum number of epochs for training to 20.
+
+# overfit_batches: 3
+# This sets the number of batches to overfit on during training to 3. Overfitting means the model will be trained specifically on these few batches, which can help in debugging and understanding model behavior.
+
+# callbacks: null
+# This disables callbacks during overfitting by setting them to null. Callbacks are functions that can be executed at various stages of the training process, but they are not needed during the overfitting process.
+
+# In summary, this YAML configuration includes a file named "default.yaml" that contains default configurations for the experiment. The trainer is set to run for a maximum of 20 epochs and overfit on only 3 batches during training. Overfitting allows the model to be trained on a small subset of data to check its behavior. Additionally, all callbacks are disabled during the overfitting process. This configuration is useful for debugging and understanding the model's behavior on a limited dataset.

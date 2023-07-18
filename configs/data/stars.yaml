@@ -4,3 +4,23 @@ batch_size: 64
 train_val_test_split: [0.7, 0.1, 0.2]
 num_workers: 0
 pin_memory: False
+
+# _target_: src.data.stars_datamodule.StarsDataModule
+# This specifies the target class for the "StarsDataModule" from the src.data.stars_datamodule module. It is the data module that will be used for handling data loading and preprocessing.
+
+# data_dir: ${paths.data_dir}
+# This sets the directory path to the data. The value of "${paths.data_dir}" is likely to be a variable that represents the path to the data directory.
+
+# batch_size: 64
+# This sets the batch size for the data loader. The data will be loaded in batches, and each batch will contain 64 data samples.
+
+# train_val_test_split: [0.7, 0.1, 0.2]
+# This sets the split ratio for the training, validation, and test datasets, respectively. In this case, 70% of the data will be used for training, 10% for validation, and 20% for testing.
+
+# num_workers: 0
+# This sets the number of worker threads to use for data loading. It is common to set this to 0 if you are using Windows or when running into issues with multiprocessing. Setting it to 0 means that the data will be loaded in the main thread without additional workers.
+
+# pin_memory: False
+# This sets whether to use pinned memory for data loading. Pinned memory can speed up data transfer to the GPU but requires additional memory. In this case, it is set to False, meaning that pinned memory will not be used.
+
+# In summary, this YAML configuration sets up the "StarsDataModule" for handling data loading and preprocessing. It specifies the data directory path, batch size, data split ratios, the number of workers for data loading, and whether to use pinned memory. The data module will organize the data into train, validation, and test datasets according to the specified split ratios. 

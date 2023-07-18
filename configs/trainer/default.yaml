@@ -17,3 +17,46 @@ check_val_every_n_epoch: 1
 # set True to to ensure deterministic results
 # makes training slower but gives more reproducibility than just setting seeds
 deterministic: False
+
+
+# The '_target_' setting specifies the target class for the configuration.
+# In this case, it is set to 'lightning.pytorch.trainer.Trainer',
+# which indicates that the configuration is for the PyTorch Lightning Trainer class.
+
+#_target_: lightning.pytorch.trainer.Trainer
+
+# The 'default_root_dir' setting specifies the default root directory for the trainer.
+# It is using Hydra interpolation syntax to reference the 'output_dir' path from previous configurations.
+#default_root_dir: ${paths.output_dir}
+
+# The 'min_epochs' setting specifies the minimum number of epochs to run during training.
+# Here, it is set to '1', which prevents early stopping after the first epoch.
+#min_epochs: 1
+
+# The 'max_epochs' setting specifies the maximum number of epochs to run during training.
+# In this configuration, it is set to '10', meaning training will run for a maximum of 10 epochs.
+#max_epochs: 10
+
+# The 'accelerator' setting specifies the accelerator to be used for training.
+# In this configuration, it is set to 'cpu', indicating that the model will be trained on the CPU.
+#accelerator: cpu
+
+# The 'devices' setting indicates the number of devices (CPU cores or GPU devices) to be used for training.
+# In this configuration, it is set to '1', which means only one device (CPU core or GPU) will be used for training.
+#devices: 1
+
+# The 'check_val_every_n_epoch' setting specifies how often to perform a validation loop during training.
+# Here, it is set to '1', meaning a validation loop will be performed after every training epoch.
+#check_val_every_n_epoch: 1
+
+# The 'deterministic' setting controls whether to ensure deterministic results during training.
+# When set to 'False' (as it is in this configuration), training may be faster but less reproducible,
+# as it relies on setting random seeds. However, if set to 'True', it ensures reproducibility at the cost of training speed.
+#deterministic: False
+
+#The configuration is for the PyTorch Lightning Trainer class.
+#The 'default_root_dir' is set to the value of 'output_dir' obtained from previous configurations, indicating the default directory for saving training-related files.
+#Training will run for a minimum of 1 epoch ('min_epochs') and a maximum of 10 epochs ('max_epochs').
+#The model will be trained on the CPU ('accelerator: cpu') using one CPU core ('devices: 1').
+#A validation loop will be performed after each training epoch ('check_val_every_n_epoch: 1').
+#Training will not be fully deterministic ('deterministic: False'), meaning it may be faster but less reproducible compared to setting 'deterministic: True'.

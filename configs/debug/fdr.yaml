@@ -7,3 +7,22 @@ defaults:
 
 trainer:
   fast_dev_run: true
+
+
+# @package _global_
+
+# runs 1 train, 1 validation, and 1 test step
+
+# defaults:
+# This section specifies default configurations for the experiment.
+
+# - default.yaml
+# This includes a YAML file named "default.yaml" that contains default configurations.
+
+# trainer:
+# This section contains configurations for the training process.
+
+# fast_dev_run: true
+# This enables the "fast_dev_run" mode for the trainer. In this mode, only one training, validation, and test step will be executed. It is used for quick testing and debugging purposes to speed up the experiment setup.
+
+# In summary, this YAML configuration includes a file named "default.yaml" that contains default configurations for the experiment. The trainer is set to run in "fast_dev_run" mode, which executes only one training, validation, and test step. This mode is useful for quick testing and debugging of the experiment setup. 

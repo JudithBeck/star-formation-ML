@@ -48,3 +48,12 @@ def instantiate_loggers(logger_cfg: DictConfig) -> List[Logger]:
             logger.append(hydra.utils.instantiate(lg_conf))
 
     return logger
+
+
+#instantiate_callbacks(callbacks_cfg: DictConfig) -> List[Callback]: This function takes a configuration dictionary callbacks_cfg as input and returns a list of instantiated callbacks. It iterates through the callbacks_cfg dictionary and checks if each item is a DictConfig with the key "target" present. If so, it instantiates the corresponding callback object using Hydra's instantiate function and adds it to the callbacks list. The list of instantiated callbacks is then returned.
+
+#instantiate_loggers(logger_cfg: DictConfig) -> List[Logger]: This function takes a configuration dictionary logger_cfg as input and returns a list of instantiated loggers. It iterates through the logger_cfg dictionary and checks if each item is a DictConfig with the key "target" present. If so, it instantiates the corresponding logger object using Hydra's instantiate function and adds it to the logger list. The list of instantiated loggers is then returned.
+
+#The DictConfig type is used to represent configuration dictionaries that are parsed and managed by Hydra. The pylogger module is used to get a Python logger, which is likely used for logging messages during the instantiation process.
+
+#These utility functions can be utilized to create and manage callbacks and loggers based on the specified configurations, enabling flexible and modular logging and callback functionality in the broader context of the machine learning pipeline.

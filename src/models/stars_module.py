@@ -136,3 +136,26 @@ class StarsLitModule(LightningModule):
 
 if __name__ == "__main__":
     _ = StarsLitModule(None, None, None)
+
+
+
+
+#In the folder 'components' inside 'models' within the 'src' directory, you have a Python class named StarsLitModule. This class is a PyTorch Lightning module used for training and evaluation of a neural network. It organizes the PyTorch code into different sections:
+
+#Initialization (init): The constructor initializes the StarsLitModule class. It takes three arguments: net, optimizer, and scheduler, which are the neural network, optimizer, and learning rate scheduler, respectively.
+
+#Train Loop (training_step): This method defines the training loop. It computes the loss, updates and logs training metrics such as loss and mean absolute error (MAE).
+
+#Validation Loop (validation_step, on_validation_epoch_end): These methods define the validation loop. They compute and log validation metrics, including loss and MAE. The on_validation_epoch_end method logs the best validation MAE achieved so far.
+
+#Test Loop (test_step, on_test_epoch_end): These methods define the testing loop. They compute and log test metrics, including loss and MAE.
+
+#Prediction Loop (predict_step): This method defines the prediction loop. It computes the predictions for a given input batch.
+
+#Optimizers and LR Schedulers (configure_optimizers): This method allows you to choose the optimizers and learning rate schedulers for your optimization process. It returns the selected optimizer and scheduler to be used during training.
+
+#In this module, the loss function used is Mean Squared Error (MSE), and the metric for evaluation is Mean Absolute Error (MAE).
+
+#The provided script (__name__ == "__main__") checks if this module is run as the main program and instantiates the StarsLitModule class. However, it doesn't perform any specific operations in the current context.
+
+#Overall, this class provides a structured way to train, validate, and test neural networks using PyTorch Lightning, making it easier to manage the training process and track metrics during experiments.

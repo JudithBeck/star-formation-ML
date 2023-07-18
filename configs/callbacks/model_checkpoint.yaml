@@ -15,3 +15,53 @@ model_checkpoint:
   train_time_interval: null # checkpoints are monitored at the specified time interval
   every_n_epochs: null # number of epochs between checkpoints
   save_on_train_epoch_end: null # whether to run checkpointing at the end of the training epoch or the end of validation
+
+
+# https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.callbacks.ModelCheckpoint.html
+
+# model_checkpoint:
+# This section defines the configuration for the "ModelCheckpoint" callback from the lightning.pytorch.callbacks module.
+
+# _target_: lightning.pytorch.callbacks.ModelCheckpoint
+# This specifies the target class for the "ModelCheckpoint" callback.
+
+# dirpath: null
+# This parameter is not specified in the provided configuration. The documentation states that it is the directory path to save the model file. The user must specify this path where the model checkpoints will be stored.
+
+# filename: null
+# This parameter is not specified in the provided configuration. If specified, it sets the checkpoint filename. The user can customize the filename of the saved checkpoint.
+
+# monitor: null
+# This parameter is not specified in the provided configuration. If specified, it sets the name of the logged metric which determines when the model is improving. The checkpoint will be saved based on this metric.
+
+# verbose: False
+# This sets the verbosity mode. If set to True, additional information will be printed during training, such as when the checkpoint is saved.
+
+# save_last: null
+# This parameter is not specified in the provided configuration. If specified, it controls whether to additionally always save an exact copy of the last checkpoint to a file named last.ckpt.
+
+# save_top_k: 1
+# This sets the number of best models (determined by the above metric) to save. It means the "k" best checkpoints will be saved.
+
+# mode: "min"
+# This sets the mode for monitoring the metric. It can be "min" or "max." If "min," it means a lower metric value is considered better and will be used to determine the best models for saving.
+
+# auto_insert_metric_name: True
+# When set to True, the checkpoints filenames will contain the metric name. This can help in identifying checkpoints based on the monitored metric.
+
+# save_weights_only: False
+# If set to True, only the model’s weights will be saved. This means other components like the optimizer state will not be saved.
+
+# every_n_train_steps: null
+# This parameter is not specified in the provided configuration. If specified, it sets the number of training steps between checkpoints. It means the checkpoint will be saved after a certain number of training steps.
+
+# train_time_interval: null
+# This parameter is not specified in the provided configuration. If specified, it sets the time interval for monitoring checkpoints during training. It means the checkpoint will be saved at the specified time interval.
+
+# every_n_epochs: null
+# This parameter is not specified in the provided configuration. If specified, it sets the number of epochs between checkpoints. It means the checkpoint will be saved after a certain number of epochs.
+
+# save_on_train_epoch_end: null
+# This parameter is not specified in the provided configuration. If specified, it controls whether to run checkpointing at the end of each training epoch or the end of validation.
+
+# In summary, this YAML configuration sets up the "ModelCheckpoint" callback from the lightning.pytorch.callbacks module. It defines various parameters that control the behavior of saving model checkpoints during training, such as the directory path, filename, monitored metric, saving options, and more. Some parameters are optional and have a default value of null, while others are required and must be specified by the user.

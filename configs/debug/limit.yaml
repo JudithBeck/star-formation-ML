@@ -10,3 +10,31 @@ trainer:
   limit_train_batches: 0.01
   limit_val_batches: 0.05
   limit_test_batches: 0.05
+
+
+# @package _global_
+
+# uses only 1% of the training data and 5% of validation/test data
+
+# defaults:
+# This section specifies default configurations for the experiment.
+
+# - default.yaml
+# This includes a YAML file named "default.yaml" that contains default configurations.
+
+# trainer:
+# This section contains configurations for the training process.
+
+# max_epochs: 3
+# This sets the maximum number of epochs for training to 3.
+
+# limit_train_batches: 0.01
+# This sets the percentage of training data to be used for each training batch to 1%. It means only 1% of the training data will be used in each training step.
+
+# limit_val_batches: 0.05
+# This sets the percentage of validation data to be used for each validation batch to 5%. It means only 5% of the validation data will be used in each validation step.
+
+# limit_test_batches: 0.05
+# This sets the percentage of test data to be used for each test batch to 5%. It means only 5% of the test data will be used in each test step.
+
+# In summary, this YAML configuration includes a file named "default.yaml" that contains default configurations for the experiment. The trainer is set to run for a maximum of 3 epochs and to use only 1% of the training data and 5% of the validation/test data in each step. This configuration is useful for quick testing and debugging, as it reduces the amount of data used during training, validation, and testing.

@@ -10,3 +10,31 @@ trainer:
   profiler: "simple"
   # profiler: "advanced"
   # profiler: "pytorch"
+
+
+# @package _global_
+
+# runs with execution time profiling
+
+# defaults:
+# This section specifies default configurations for the experiment.
+
+# - default.yaml
+# This includes a YAML file named "default.yaml" that contains default configurations.
+
+# trainer:
+# This section contains configurations for the training process.
+
+# max_epochs: 1
+# This sets the maximum number of epochs for training to 1.
+
+# profiler: "simple"
+# Uncommenting this line and commenting out the other profiler options means the trainer will use the "simple" profiler. This profiler measures the execution time of each training step, providing basic profiling information.
+
+# profiler: "advanced"
+# Uncommenting this line and commenting out the other profiler options means the trainer will use the "advanced" profiler. The "advanced" profiler provides more detailed profiling information compared to the "simple" profiler.
+
+# profiler: "pytorch"
+# Uncommenting this line and commenting out the other profiler options means the trainer will use the "pytorch" profiler. The "pytorch" profiler is provided by PyTorch and offers additional profiling features specific to PyTorch operations.
+
+# In summary, this YAML configuration includes a file named "default.yaml" that contains default configurations for the experiment. The trainer is set to run for a maximum of 1 epoch and with execution time profiling enabled. You can choose between different profilers: "simple," "advanced," or "pytorch," depending on the level of profiling detail you need. Profiling is useful for understanding the time taken by each training step and identifying potential bottlenecks in the training process.
