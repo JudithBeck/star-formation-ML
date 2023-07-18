@@ -1,0 +1,204 @@
+The activation script must be sourced, otherwise the virtual environment will not work.
+Setting vars
+[[36m2023-07-13 13:19:49,522[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Enforcing tags! <cfg.extras.enforce_tags=True>[0m
+[[36m2023-07-13 13:19:49,531[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Printing config tree with Rich! <cfg.extras.print_config=True>[0m
+CONFIG
+├── data
+│   └── _target_: src.data.stars_datamodule.StarsDataModule                     
+│       data_dir: /p/haicluster/niesel1/lightning-hydra-stars/data/             
+│       batch_size: 64                                                          
+│       train_val_test_split:                                                   
+│       - 0.7                                                                   
+│       - 0.1                                                                   
+│       - 0.2                                                                   
+│       num_workers: 0                                                          
+│       pin_memory: false                                                       
+│                                                                               
+├── model
+│   └── _target_: src.models.stars_module.StarsLitModule                        
+│       optimizer:                                                              
+│         _target_: torch.optim.Adam                                            
+│         _partial_: true                                                       
+│         lr: 0.001                                                             
+│         weight_decay: 0.0                                                     
+│       scheduler:                                                              
+│         _target_: torch.optim.lr_scheduler.ReduceLROnPlateau                  
+│         _partial_: true                                                       
+│         mode: min                                                             
+│         factor: 0.1                                                           
+│         patience: 10                                                          
+│       net:                                                                    
+│         _target_: src.models.components.multilayer_perceptron.MLP             
+│         input_size: 4302                                                      
+│         lin1_size: 2048                                                       
+│         lin2_size: 1024                                                       
+│         lin3_size: 512                                                        
+│         lin4_size: 256                                                        
+│         lin5_size: 64                                                         
+│         lin6_size: 32                                                         
+│         output_size: 4                                                        
+│                                                                               
+├── callbacks
+│   └── model_checkpoint:                                                       
+│         _target_: lightning.pytorch.callbacks.ModelCheckpoint                 
+│         dirpath: /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2
+│         filename: epoch_{epoch:03d}                                           
+│         monitor: val/mae                                                      
+│         verbose: false                                                        
+│         save_last: true                                                       
+│         save_top_k: 1                                                         
+│         mode: min                                                             
+│         auto_insert_metric_name: false                                        
+│         save_weights_only: false                                              
+│         every_n_train_steps: null                                             
+│         train_time_interval: null                                             
+│         every_n_epochs: null                                                  
+│         save_on_train_epoch_end: null                                         
+│       early_stopping:                                                         
+│         _target_: lightning.pytorch.callbacks.EarlyStopping                   
+│         monitor: val/mae                                                      
+│         min_delta: 0.0                                                        
+│         patience: 100                                                         
+│         verbose: false                                                        
+│         mode: min                                                             
+│         strict: true                                                          
+│         check_finite: true                                                    
+│         stopping_threshold: null                                              
+│         divergence_threshold: null                                            
+│         check_on_train_epoch_end: null                                        
+│       model_summary:                                                          
+│         _target_: lightning.pytorch.callbacks.RichModelSummary                
+│         max_depth: -1                                                         
+│       rich_progress_bar:                                                      
+│         _target_: lightning.pytorch.callbacks.RichProgressBar                 
+│                                                                               
+├── logger
+│   └── tensorboard:                                                            
+│         _target_: lightning.pytorch.loggers.tensorboard.TensorBoardLogger     
+│         save_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/
+│         name: stars                                                           
+│         log_graph: false                                                      
+│         default_hp_metric: true                                               
+│         prefix: ''                                                            
+│       aim:                                                                    
+│         experiment: stars                                                     
+│                                                                               
+├── trainer
+│   └── _target_: lightning.pytorch.trainer.Trainer                             
+│       default_root_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/train
+│       min_epochs: 100                                                         
+│       max_epochs: 400                                                         
+│       accelerator: gpu                                                        
+│       devices: 1                                                              
+│       check_val_every_n_epoch: 1                                              
+│       deterministic: false                                                    
+│       gradient_clip_val: 0.5                                                  
+│                                                                               
+├── paths
+│   └── root_dir: /p/haicluster/niesel1/lightning-hydra-stars                   
+│       data_dir: /p/haicluster/niesel1/lightning-hydra-stars/data/             
+│       log_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/              
+│       output_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/
+│       work_dir: /p/haicluster/niesel1/lightning-hydra-stars/src               
+│                                                                               
+├── extras
+│   └── ignore_warnings: false                                                  
+│       enforce_tags: true                                                      
+│       print_config: true                                                      
+│                                                                               
+├── task_name
+│   └── train                                                                   
+├── tags
+│   └── ['stars', 'mlp']                                                        
+├── train
+│   └── True                                                                    
+├── test
+│   └── True                                                                    
+├── compile
+│   └── False                                                                   
+├── ckpt_path
+│   └── None                                                                    
+└── seed
+    └── 12345                                                                   
+[rank: 0] Global seed set to 12345
+[[36m2023-07-13 13:19:49,603[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating datamodule <src.data.stars_datamodule.StarsDataModule>[0m
+[[36m2023-07-13 13:19:50,477[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating model <src.models.stars_module.StarsLitModule>[0m
+[[36m2023-07-13 13:19:50,593[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating callbacks...[0m
+[[36m2023-07-13 13:19:50,594[0m][[34msrc.utils.instantiators[0m][[32mINFO[0m] - Instantiating callback <lightning.pytorch.callbacks.ModelCheckpoint>[0m
+[[36m2023-07-13 13:19:50,600[0m][[34msrc.utils.instantiators[0m][[32mINFO[0m] - Instantiating callback <lightning.pytorch.callbacks.EarlyStopping>[0m
+[[36m2023-07-13 13:19:50,601[0m][[34msrc.utils.instantiators[0m][[32mINFO[0m] - Instantiating callback <lightning.pytorch.callbacks.RichModelSummary>[0m
+[[36m2023-07-13 13:19:50,602[0m][[34msrc.utils.instantiators[0m][[32mINFO[0m] - Instantiating callback <lightning.pytorch.callbacks.RichProgressBar>[0m
+[[36m2023-07-13 13:19:50,602[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating loggers...[0m
+[[36m2023-07-13 13:19:50,603[0m][[34msrc.utils.instantiators[0m][[32mINFO[0m] - Instantiating logger <lightning.pytorch.loggers.tensorboard.TensorBoardLogger>[0m
+[[36m2023-07-13 13:19:50,604[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating trainer <lightning.pytorch.trainer.Trainer>[0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/utilities/parsing.py:196: UserWarning: Attribute 'net' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['net'])`.
+  rank_zero_warn(
+Trainer already configured with model summary callbacks: [<class 'lightning.pytorch.callbacks.rich_model_summary.RichModelSummary'>]. Skipping setting a default `ModelSummary` callback.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+[[36m2023-07-13 13:19:51,465[0m][[34m__main__[0m][[32mINFO[0m] - Logging hyperparameters![0m
+[[36m2023-07-13 13:19:51,738[0m][[34m__main__[0m][[32mINFO[0m] - Starting training![0m
+You are using a CUDA device ('NVIDIA GeForce RTX 3090') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [2]
+┏━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┓
+┃    ┃ Name         ┃ Type              ┃ Params ┃
+┡━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━┩
+│ 0  │ net          │ MLP               │ 11.6 M │
+│ 1  │ net.model    │ Sequential        │ 11.6 M │
+│ 2  │ net.model.0  │ Linear            │  8.8 M │
+│ 3  │ net.model.1  │ ReLU              │      0 │
+│ 4  │ net.model.2  │ Linear            │  2.1 M │
+│ 5  │ net.model.3  │ ReLU              │      0 │
+│ 6  │ net.model.4  │ Linear            │  524 K │
+│ 7  │ net.model.5  │ ReLU              │      0 │
+│ 8  │ net.model.6  │ Linear            │  131 K │
+│ 9  │ net.model.7  │ ReLU              │      0 │
+│ 10 │ net.model.8  │ Linear            │ 16.4 K │
+│ 11 │ net.model.9  │ ReLU              │      0 │
+│ 12 │ net.model.10 │ Linear            │  2.1 K │
+│ 13 │ net.model.11 │ ReLU              │      0 │
+│ 14 │ net.model.12 │ Linear            │    132 │
+│ 15 │ criterion    │ MSELoss           │      0 │
+│ 16 │ train_mae    │ MeanAbsoluteError │      0 │
+│ 17 │ val_mae      │ MeanAbsoluteError │      0 │
+│ 18 │ test_mae     │ MeanAbsoluteError │      0 │
+│ 19 │ train_loss   │ MeanMetric        │      0 │
+│ 20 │ val_loss     │ MeanMetric        │      0 │
+│ 21 │ test_loss    │ MeanMetric        │      0 │
+│ 22 │ val_mae_best │ MinMetric         │      0 │
+└────┴──────────────┴───────────────────┴────────┘
+Trainable params: 11.6 M                                                        
+Non-trainable params: 0                                                         
+Total params: 11.6 M                                                            
+Total estimated model params size (MB): 46                                      
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 233/399 ━━━━━━━━━━━━━━━ 72/72 0:00:00 •       269.08it/s v_num: 0         
+                                    0:00:00                    val/loss: 0.007  
+                                                               val/mae: 0.038   
+                                                               val/mae_best:    
+                                                               0.038 train/loss:
+                                                               0.004 train/mae: 
+                                                               0.029            
+[[36m2023-07-13 13:27:51,119[0m][[34m__main__[0m][[32mINFO[0m] - Starting testing![0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:432: PossibleUserWarning: The dataloader, val_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:432: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Restoring states from the checkpoint path at /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-13_13-19-49/checkpoints/epoch_133.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [2]
+Loaded model weights from the checkpoint at /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-13_13-19-49/checkpoints/epoch_133.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃        Test metric        ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│         test/loss         │   0.005747918505221605    │
+│         test/mae          │    0.03601397946476936    │
+└───────────────────────────┴───────────────────────────┘
+Testing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21/21 0:00:00 • 0:00:00 437.21it/s 
+[[36m2023-07-13 13:27:51,376[0m][[34m__main__[0m][[32mINFO[0m] - Best ckpt path: /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-13_13-19-49/checkpoints/epoch_133.ckpt[0m
+[[36m2023-07-13 13:27:51,377[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Output dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-13_13-19-49[0m
+[[36m2023-07-13 13:27:51,384[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Metric name is None! Skipping metric value retrieval...[0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:432: PossibleUserWarning: The dataloader, test_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(

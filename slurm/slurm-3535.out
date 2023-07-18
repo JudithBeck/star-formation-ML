@@ -1,0 +1,140 @@
+The activation script must be sourced, otherwise the virtual environment will not work.
+Setting vars
+[[36m2023-07-17 11:54:32,072[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Enforcing tags! <cfg.extras.enforce_tags=True>[0m
+[[36m2023-07-17 11:54:32,080[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Printing config tree with Rich! <cfg.extras.print_config=True>[0m
+[[36m2023-07-17 11:54:32,080[0m][[34msrc.utils.rich_utils[0m][[33mWARNING[0m] - Field 'callbacks' not found in config. Skipping 'callbacks' config printing...[0m
+[[36m2023-07-17 11:54:32,081[0m][[34msrc.utils.rich_utils[0m][[33mWARNING[0m] - Field 'logger' not found in config. Skipping 'logger' config printing...[0m
+CONFIG
+├── data
+│   └── _target_: src.data.stars_datamodule.StarsDataModule                     
+│       data_dir: /p/haicluster/niesel1/lightning-hydra-stars/data/             
+│       batch_size: 64                                                          
+│       train_val_test_split:                                                   
+│       - 0.7                                                                   
+│       - 0.1                                                                   
+│       - 0.2                                                                   
+│       num_workers: 0                                                          
+│       pin_memory: false                                                       
+│                                                                               
+├── model
+│   └── _target_: src.models.stars_module.StarsLitModule                        
+│       optimizer:                                                              
+│         _target_: torch.optim.Adam                                            
+│         _partial_: true                                                       
+│         lr: 0.0001                                                            
+│         weight_decay: 0.0                                                     
+│       scheduler:                                                              
+│         _target_: torch.optim.lr_scheduler.ReduceLROnPlateau                  
+│         _partial_: true                                                       
+│         mode: min                                                             
+│         factor: 0.5                                                           
+│         patience: 10                                                          
+│       net:                                                                    
+│         _target_: src.models.components.multilayer_perceptron.MLP             
+│         input_size: 4302                                                      
+│         lin1_size: 2048                                                       
+│         lin2_size: 1024                                                       
+│         lin3_size: 512                                                        
+│         lin4_size: 256                                                        
+│         lin5_size: 64                                                         
+│         lin6_size: 32                                                         
+│         output_size: 4                                                        
+│                                                                               
+├── trainer
+│   └── _target_: lightning.pytorch.trainer.Trainer                             
+│       default_root_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/eval/
+│       min_epochs: 1                                                           
+│       max_epochs: 10                                                          
+│       accelerator: cpu                                                        
+│       devices: 1                                                              
+│       check_val_every_n_epoch: 1                                              
+│       deterministic: false                                                    
+│                                                                               
+├── paths
+│   └── root_dir: /p/haicluster/niesel1/lightning-hydra-stars                   
+│       data_dir: /p/haicluster/niesel1/lightning-hydra-stars/data/             
+│       log_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/              
+│       output_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/eval/runs/2
+│       work_dir: /p/haicluster/niesel1/lightning-hydra-stars/src               
+│                                                                               
+├── extras
+│   └── ignore_warnings: false                                                  
+│       enforce_tags: true                                                      
+│       print_config: true                                                      
+│                                                                               
+├── task_name
+│   └── eval                                                                    
+├── tags
+│   └── ['dev']                                                                 
+└── ckpt_path
+    └── /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_1
+[[36m2023-07-17 11:54:32,128[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating datamodule <src.data.stars_datamodule.StarsDataModule>[0m
+[[36m2023-07-17 11:54:32,997[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating model <src.models.stars_module.StarsLitModule>[0m
+[[36m2023-07-17 11:54:33,156[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating loggers...[0m
+[[36m2023-07-17 11:54:33,157[0m][[34msrc.utils.instantiators[0m][[33mWARNING[0m] - No logger configs found! Skipping...[0m
+[[36m2023-07-17 11:54:33,157[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating trainer <lightning.pytorch.trainer.Trainer>[0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/utilities/parsing.py:196: UserWarning: Attribute 'net' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['net'])`.
+  rank_zero_warn(
+GPU available: True (cuda), used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+[[36m2023-07-17 11:54:33,952[0m][[34m__main__[0m][[32mINFO[0m] - Starting testing![0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/setup.py:176: PossibleUserWarning: GPU available but not used. Set `accelerator` and `devices` using `Trainer(accelerator='gpu', devices=4)`.
+  rank_zero_warn(
+Restoring states from the checkpoint path at /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_10-12-31/checkpoints/epoch_293.ckpt
+Loaded model weights from the checkpoint at /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_10-12-31/checkpoints/epoch_293.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:432: PossibleUserWarning: The dataloader, predict_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Predicting: 0it [00:00, ?it/s]Predicting:   0%|          | 0/21 [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/21 [00:00<?, ?it/s]Predicting DataLoader 0:   5%|▍         | 1/21 [00:00<00:02,  8.75it/s]Predicting DataLoader 0:  10%|▉         | 2/21 [00:00<00:01, 15.26it/s]Predicting DataLoader 0:  14%|█▍        | 3/21 [00:00<00:00, 21.68it/s]Predicting DataLoader 0:  19%|█▉        | 4/21 [00:00<00:00, 27.49it/s]Predicting DataLoader 0:  24%|██▍       | 5/21 [00:00<00:00, 32.83it/s]Predicting DataLoader 0:  29%|██▊       | 6/21 [00:00<00:00, 37.72it/s]Predicting DataLoader 0:  33%|███▎      | 7/21 [00:00<00:00, 42.20it/s]Predicting DataLoader 0:  38%|███▊      | 8/21 [00:00<00:00, 46.30it/s]Predicting DataLoader 0:  43%|████▎     | 9/21 [00:00<00:00, 50.08it/s]Predicting DataLoader 0:  48%|████▊     | 10/21 [00:00<00:00, 53.59it/s]Predicting DataLoader 0:  52%|█████▏    | 11/21 [00:00<00:00, 56.86it/s]Predicting DataLoader 0:  57%|█████▋    | 12/21 [00:00<00:00, 59.91it/s]Predicting DataLoader 0:  62%|██████▏   | 13/21 [00:00<00:00, 62.75it/s]Predicting DataLoader 0:  67%|██████▋   | 14/21 [00:00<00:00, 65.41it/s]Predicting DataLoader 0:  71%|███████▏  | 15/21 [00:00<00:00, 67.89it/s]Predicting DataLoader 0:  76%|███████▌  | 16/21 [00:00<00:00, 70.20it/s]Predicting DataLoader 0:  81%|████████  | 17/21 [00:00<00:00, 72.35it/s]Predicting DataLoader 0:  86%|████████▌ | 18/21 [00:00<00:00, 74.31it/s]Predicting DataLoader 0:  90%|█████████ | 19/21 [00:00<00:00, 76.26it/s]Predicting DataLoader 0:  95%|█████████▌| 20/21 [00:00<00:00, 78.08it/s]Predicting DataLoader 0: 100%|██████████| 21/21 [00:00<00:00, 80.39it/s]Predicting DataLoader 0: 100%|██████████| 21/21 [00:00<00:00, 80.29it/s]
+[[36m2023-07-17 11:54:43,447[0m][[34msrc.utils.utils[0m][[31mERROR[0m] - [0m
+Traceback (most recent call last):
+  File "/p/haicluster/niesel1/lightning-hydra-stars/src/utils/utils.py", line 65, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "eval.py", line 97, in evaluate
+    np.save(os.path.join(cfg.hydra.run.dir, "/predictions/x_test.npy"), x_test)
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/dictconfig.py", line 359, in __getattr__
+    self._format_and_raise(key=key, value=None, cause=e)
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/base.py", line 231, in _format_and_raise
+    format_and_raise(
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/_utils.py", line 819, in format_and_raise
+    _raise(ex, cause)
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/_utils.py", line 797, in _raise
+    raise ex.with_traceback(sys.exc_info()[2])  # set env var OC_CAUSE=1 for full trace
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/dictconfig.py", line 351, in __getattr__
+    return self._get_impl(
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/dictconfig.py", line 442, in _get_impl
+    node = self._get_child(
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/basecontainer.py", line 73, in _get_child
+    child = self._get_node(
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/dictconfig.py", line 475, in _get_node
+    self._validate_get(key)
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/dictconfig.py", line 164, in _validate_get
+    self._format_and_raise(
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/base.py", line 231, in _format_and_raise
+    format_and_raise(
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/_utils.py", line 899, in format_and_raise
+    _raise(ex, cause)
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/omegaconf/_utils.py", line 797, in _raise
+    raise ex.with_traceback(sys.exc_info()[2])  # set env var OC_CAUSE=1 for full trace
+omegaconf.errors.ConfigAttributeError: Key 'hydra' is not in struct
+    full_key: hydra
+    object_type=dict
+[[36m2023-07-17 11:54:43,464[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Output dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/eval/runs/2023-07-17_11-54-31[0m
+Error executing job with overrides: ['ckpt_path=/p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_10-12-31/checkpoints/epoch_293.ckpt']
+Traceback (most recent call last):
+  File "eval.py", line 112, in main
+    evaluate(cfg)
+  File "/p/haicluster/niesel1/lightning-hydra-stars/src/utils/utils.py", line 75, in wrap
+    raise ex
+  File "/p/haicluster/niesel1/lightning-hydra-stars/src/utils/utils.py", line 65, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "eval.py", line 97, in evaluate
+    np.save(os.path.join(cfg.hydra.run.dir, "/predictions/x_test.npy"), x_test)
+omegaconf.errors.ConfigAttributeError: Key 'hydra' is not in struct
+    full_key: hydra
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+srun: error: haicluster1: task 0: Exited with exit code 1

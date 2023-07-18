@@ -1,0 +1,25 @@
+_target_: src.models.stars_module.StarsLitModule
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.0001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.5
+  patience: 10
+
+net:
+  _target_: src.models.components.multilayer_perceptron.MLP
+  input_size: 4302
+  lin1_size: 2048
+  lin2_size: 1024
+  lin3_size: 512
+  lin4_size: 256
+  lin5_size: 64 
+  lin6_size: 32
+  output_size: 5

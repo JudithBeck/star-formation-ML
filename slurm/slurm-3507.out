@@ -1,0 +1,120 @@
+The activation script must be sourced, otherwise the virtual environment will not work.
+Setting vars
+[[36m2023-07-14 12:00:35,122[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Enforcing tags! <cfg.extras.enforce_tags=True>[0m
+[[36m2023-07-14 12:00:35,131[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Printing config tree with Rich! <cfg.extras.print_config=True>[0m
+[[36m2023-07-14 12:00:35,132[0m][[34msrc.utils.rich_utils[0m][[33mWARNING[0m] - Field 'callbacks' not found in config. Skipping 'callbacks' config printing...[0m
+[[36m2023-07-14 12:00:35,132[0m][[34msrc.utils.rich_utils[0m][[33mWARNING[0m] - Field 'logger' not found in config. Skipping 'logger' config printing...[0m
+CONFIG
+├── data
+│   └── _target_: src.data.stars_datamodule.StarsDataModule                     
+│       data_dir: /p/haicluster/niesel1/lightning-hydra-stars/data/             
+│       batch_size: 64                                                          
+│       train_val_test_split:                                                   
+│       - 0.7                                                                   
+│       - 0.1                                                                   
+│       - 0.2                                                                   
+│       num_workers: 0                                                          
+│       pin_memory: false                                                       
+│                                                                               
+├── model
+│   └── _target_: src.models.stars_module.StarsLitModule                        
+│       optimizer:                                                              
+│         _target_: torch.optim.Adam                                            
+│         _partial_: true                                                       
+│         lr: 0.0001                                                            
+│         weight_decay: 0.0                                                     
+│       scheduler:                                                              
+│         _target_: torch.optim.lr_scheduler.ReduceLROnPlateau                  
+│         _partial_: true                                                       
+│         mode: min                                                             
+│         factor: 0.5                                                           
+│         patience: 10                                                          
+│       net:                                                                    
+│         _target_: src.models.components.multilayer_perceptron.MLP             
+│         input_size: 4302                                                      
+│         lin1_size: 2048                                                       
+│         lin2_size: 1024                                                       
+│         lin3_size: 512                                                        
+│         lin4_size: 256                                                        
+│         lin5_size: 64                                                         
+│         lin6_size: 32                                                         
+│         output_size: 4                                                        
+│                                                                               
+├── trainer
+│   └── _target_: lightning.pytorch.trainer.Trainer                             
+│       default_root_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/eval/
+│       min_epochs: 1                                                           
+│       max_epochs: 10                                                          
+│       accelerator: cpu                                                        
+│       devices: 1                                                              
+│       check_val_every_n_epoch: 1                                              
+│       deterministic: false                                                    
+│                                                                               
+├── paths
+│   └── root_dir: /p/haicluster/niesel1/lightning-hydra-stars                   
+│       data_dir: /p/haicluster/niesel1/lightning-hydra-stars/data/             
+│       log_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/              
+│       output_dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/eval/runs/2
+│       work_dir: /p/haicluster/niesel1/lightning-hydra-stars/src               
+│                                                                               
+├── extras
+│   └── ignore_warnings: false                                                  
+│       enforce_tags: true                                                      
+│       print_config: true                                                      
+│                                                                               
+├── task_name
+│   └── eval                                                                    
+├── tags
+│   └── ['dev']                                                                 
+└── ckpt_path
+    └── /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_1
+[[36m2023-07-14 12:00:35,174[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating datamodule <src.data.stars_datamodule.StarsDataModule>[0m
+[[36m2023-07-14 12:00:36,087[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating model <src.models.stars_module.StarsLitModule>[0m
+[[36m2023-07-14 12:00:36,199[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating loggers...[0m
+[[36m2023-07-14 12:00:36,200[0m][[34msrc.utils.instantiators[0m][[33mWARNING[0m] - No logger configs found! Skipping...[0m
+[[36m2023-07-14 12:00:36,200[0m][[34m__main__[0m][[32mINFO[0m] - Instantiating trainer <lightning.pytorch.trainer.Trainer>[0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/utilities/parsing.py:196: UserWarning: Attribute 'net' is an instance of `nn.Module` and is already saved during checkpointing. It is recommended to ignore them using `self.save_hyperparameters(ignore=['net'])`.
+  rank_zero_warn(
+GPU available: True (cuda), used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+[[36m2023-07-14 12:00:37,059[0m][[34m__main__[0m][[32mINFO[0m] - Starting testing![0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/setup.py:176: PossibleUserWarning: GPU available but not used. Set `accelerator` and `devices` using `Trainer(accelerator='gpu', devices=1)`.
+  rank_zero_warn(
+Restoring states from the checkpoint path at /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_10-12-31/checkpoints/epoch_293.ckpt
+Loaded model weights from the checkpoint at /p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_10-12-31/checkpoints/epoch_293.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:432: PossibleUserWarning: The dataloader, predict_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 48 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Predicting: 0it [00:00, ?it/s]Predicting:   0%|          | 0/21 [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/21 [00:00<?, ?it/s]Predicting DataLoader 0:   5%|▍         | 1/21 [00:00<00:00, 106.71it/s]Predicting DataLoader 0:  10%|▉         | 2/21 [00:00<00:00, 111.47it/s]Predicting DataLoader 0:  14%|█▍        | 3/21 [00:00<00:00, 116.98it/s]Predicting DataLoader 0:  19%|█▉        | 4/21 [00:00<00:00, 120.24it/s]Predicting DataLoader 0:  24%|██▍       | 5/21 [00:00<00:00, 122.46it/s]Predicting DataLoader 0:  29%|██▊       | 6/21 [00:00<00:00, 123.83it/s]Predicting DataLoader 0:  33%|███▎      | 7/21 [00:00<00:00, 125.06it/s]Predicting DataLoader 0:  38%|███▊      | 8/21 [00:00<00:00, 125.99it/s]Predicting DataLoader 0:  43%|████▎     | 9/21 [00:00<00:00, 126.60it/s]Predicting DataLoader 0:  48%|████▊     | 10/21 [00:00<00:00, 126.84it/s]Predicting DataLoader 0:  52%|█████▏    | 11/21 [00:00<00:00, 127.37it/s]Predicting DataLoader 0:  57%|█████▋    | 12/21 [00:00<00:00, 127.78it/s]Predicting DataLoader 0:  62%|██████▏   | 13/21 [00:00<00:00, 127.99it/s]Predicting DataLoader 0:  67%|██████▋   | 14/21 [00:00<00:00, 128.15it/s]Predicting DataLoader 0:  71%|███████▏  | 15/21 [00:00<00:00, 128.46it/s]Predicting DataLoader 0:  76%|███████▌  | 16/21 [00:00<00:00, 128.71it/s]Predicting DataLoader 0:  81%|████████  | 17/21 [00:00<00:00, 128.70it/s]Predicting DataLoader 0:  86%|████████▌ | 18/21 [00:00<00:00, 128.77it/s]Predicting DataLoader 0:  90%|█████████ | 19/21 [00:00<00:00, 129.17it/s]Predicting DataLoader 0:  95%|█████████▌| 20/21 [00:00<00:00, 129.38it/s]Predicting DataLoader 0: 100%|██████████| 21/21 [00:00<00:00, 130.87it/s]Predicting DataLoader 0: 100%|██████████| 21/21 [00:00<00:00, 130.56it/s]
+[[36m2023-07-14 12:00:46,568[0m][[34msrc.utils.utils[0m][[31mERROR[0m] - [0m
+Traceback (most recent call last):
+  File "/p/haicluster/niesel1/lightning-hydra-stars/src/utils/utils.py", line 65, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "eval.py", line 82, in evaluate
+    np.save(file_path, predictions)
+  File "<__array_function__ internals>", line 200, in save
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/numpy/lib/npyio.py", line 521, in save
+    arr = np.asanyarray(arr)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (21,) + inhomogeneous part.
+[[36m2023-07-14 12:00:46,572[0m][[34msrc.utils.utils[0m][[32mINFO[0m] - Output dir: /p/haicluster/niesel1/lightning-hydra-stars/logs/eval/runs/2023-07-14_12-00-35[0m
+/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/numpy/lib/npyio.py:521: FutureWarning: The input object of type 'Tensor' is an array-like implementing one of the corresponding protocols (`__array__`, `__array_interface__` or `__array_struct__`); but not a sequence (or 0-D). In the future, this object will be coerced as if it was first converted using `np.array(obj)`. To retain the old behaviour, you have to either modify the type 'Tensor', or assign to an empty array created with `np.empty(correct_shape, dtype=object)`.
+  arr = np.asanyarray(arr)
+Error executing job with overrides: ['ckpt_path=/p/haicluster/niesel1/lightning-hydra-stars/logs/train/runs/2023-07-14_10-12-31/checkpoints/epoch_293.ckpt']
+Traceback (most recent call last):
+  File "eval.py", line 95, in main
+    evaluate(cfg)
+  File "/p/haicluster/niesel1/lightning-hydra-stars/src/utils/utils.py", line 75, in wrap
+    raise ex
+  File "/p/haicluster/niesel1/lightning-hydra-stars/src/utils/utils.py", line 65, in wrap
+    metric_dict, object_dict = task_func(cfg=cfg)
+  File "eval.py", line 82, in evaluate
+    np.save(file_path, predictions)
+  File "<__array_function__ internals>", line 200, in save
+  File "/p/haicluster/niesel1/venv_stars/venv/lib/python3.8/site-packages/numpy/lib/npyio.py", line 521, in save
+    arr = np.asanyarray(arr)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (21,) + inhomogeneous part.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+srun: error: haicluster1: task 0: Exited with exit code 1
