@@ -1,3 +1,7 @@
+## Todos:
+- Add "/data" directory and place dataset
+- Create new virtual environment and install everything in `requirements.txt`
+
 <div align="center">
 
 # Lightning-Hydra-Template
