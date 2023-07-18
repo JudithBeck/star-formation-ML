@@ -83,6 +83,9 @@ def evaluate(cfg: DictConfig) -> Tuple[dict, dict]:
         y_pred.append(batch)
     y_pred = np.array(torch.cat(y_pred, dim=0).detach())
 
+    # a negative mass makes no sense, so we set negative values in the fifth column to 0 (min value of scaler)
+    y_pred[:, 4] = np.where(y_pred[:, 4] < 0, 0, y_pred[:, 4])
+
     # collect input and true data
     x_test = []
     y_test = []
@@ -98,6 +101,10 @@ def evaluate(cfg: DictConfig) -> Tuple[dict, dict]:
     scaler = joblib.load(os.path.join(cfg.paths.data_dir, "scaler.gz"))
     y_pred_rescaled = scaler.inverse_transform(y_pred)
     y_test_rescaled = scaler.inverse_transform(y_test)
+
+    # inverse log10 transform of 3rd and 5th column
+    y_pred_rescaled[:, 2] = 10**y_pred_rescaled[:, 2]
+    y_pred_rescaled[:, 4] = 10**y_pred_rescaled[:, 4]
 
     # save data
     np.save(os.path.join(cfg.paths.output_dir, "x_test.npy"), x_test)
