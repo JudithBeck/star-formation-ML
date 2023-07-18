@@ -1,5 +1,5 @@
 ## Todos:
-- Add "/data" directory and place dataset
+- Place dataset into the `data` directory
 - Create new virtual environment and install everything in `requirements.txt`
 
 <div align="center">
