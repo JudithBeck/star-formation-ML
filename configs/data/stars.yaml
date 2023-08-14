@@ -1,4 +1,5 @@
-_target_: src.data.stars_datamodule.StarsDataModule
+#_target_: src.data.stars_datamodule.StarsDataModule
+_target_: src.data.stars_datamodule_noise.StarsDataModule
 data_dir: ${paths.data_dir}
 batch_size: 64
 train_val_test_split: [0.7, 0.1, 0.2]

@@ -106,9 +106,19 @@ class StarsDataModule(LightningDataModule):
                 generator=torch.Generator().manual_seed(42),
             )
 
-            np.save(os.path.join(cfg.paths.output_dir, "NOISE.npy"), NOISE)
-            np.save(os.path.join(cfg.paths.output_dir, "spectra.npy"), spectra)
+            log_runs_dir = '/home/beck/star-formation-ML/logs/train/runs'
 
+            # Listet den Inhalt des Predictions-Verzeichnisses auf
+            log_runs = os.listdir(log_runs_dir)
+
+            # Sortiert die Versionen nach dem Erstellungsdatum
+            sorted_runs = sorted(log_runs, key=lambda x: os.path.getmtime(os.path.join(log_runs_dir, x)))
+
+            # Die neueste Version ist die letzte in der sortierten Liste
+            aktuelle_version = sorted_runs[-1]
+
+            np.save('%s/%s/NOISE.npy' %(log_runs_dir, aktuelle_version), NOISE)
+            np.save('%s/%s/spectra.npy' %(log_runs_dir, aktuelle_version), spectra)
 
     def train_dataloader(self):
         return DataLoader(

@@ -9,6 +9,7 @@ import os
 import numpy as np
 import torch
 import joblib
+import shutil
 
 
 pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
@@ -109,14 +110,31 @@ def evaluate(cfg: DictConfig) -> Tuple[dict, dict]:
 
     y_test_rescaled[:, 2] = 10**y_test_rescaled[:, 2]
     y_test_rescaled[:, 4] = 10**y_test_rescaled[:, 4]
-    
-    # save data
-    np.save(os.path.join(cfg.paths.output_dir, "x_test_no_noise.npy"), x_test)
-    np.save(os.path.join(cfg.paths.output_dir, "y_test_no_noise.npy"), y_test_rescaled)
-    np.save(os.path.join(cfg.paths.output_dir, "y_pred_no_noise.npy"), y_pred_rescaled)
-    np.save(os.path.join(cfg.paths.output_dir, "y_test_scaled_no_noise.npy"), y_test)
-    np.save(os.path.join(cfg.paths.output_dir, "y_pred_scaled_no_noise.npy"), y_pred)
 
+    # save data
+    np.save(os.path.join(cfg.paths.output_dir, "x_test.npy"), x_test)
+    np.save(os.path.join(cfg.paths.output_dir, "y_test.npy"), y_test_rescaled)
+    np.save(os.path.join(cfg.paths.output_dir, "y_pred.npy"), y_pred_rescaled)
+    np.save(os.path.join(cfg.paths.output_dir, "y_test_scaled.npy"), y_test)
+    np.save(os.path.join(cfg.paths.output_dir, "y_pred_scaled.npy"), y_pred)
+
+    log_runs_dir = '/home/beck/star-formation-ML/logs/train/runs'
+
+    # Listet den Inhalt des Predictions-Verzeichnisses auf
+    log_runs = os.listdir(log_runs_dir)
+
+    # Sortiert die Versionen nach dem Erstellungsdatum
+    sorted_runs = sorted(log_runs, key=lambda x: os.path.getmtime(os.path.join(log_runs_dir, x)))
+
+    # Die neueste Version ist die letzte in der sortierten Liste
+    aktuelle_version = sorted_runs[-1]
+    
+    source_path1 = '%s/%s/NOISE.npy' %(log_runs_dir, aktuelle_version)  # Pfad zur Quelldatei
+    source_path2 = '%s/%s/spectra.npy' %(log_runs_dir, aktuelle_version)  # Pfad zur Quelldatei
+
+    # Datei verschieben
+    shutil.move(source_path1, cfg.paths.output_dir)
+    shutil.move(source_path2, cfg.paths.output_dir)
 
     metric_dict = trainer.callback_metrics
 
